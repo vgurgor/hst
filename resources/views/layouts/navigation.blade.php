@@ -17,7 +17,7 @@
                     </x-nav-link>
                     <x-dropdown align="left">
                         <x-slot name="trigger" >
-                            <x-nav-link href="#" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit') || request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit')">
+                            <x-nav-link href="#" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit') || request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit') || request()->routeIs('grade.list') || request()->routeIs('grade.filter') || request()->routeIs('grade.add')  || request()->routeIs('grade.edit')">
                                 {{ __('Okul Yönetimi') }}
                             </x-nav-link>
                         </x-slot>
