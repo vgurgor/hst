@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WEB\CampusController;
+use App\Http\Controllers\WEB\BranchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,15 @@ Route::put('/campus/{id}', [CampusController::class, 'update'])->middleware(['au
 Route::post('/campus/filter', [CampusController::class, 'filter'])->name('campus.filter');
 Route::get('/campus/add', [CampusController::class, 'add'])->name('campus.add');
 Route::post('/campus', [CampusController::class, 'store'])->name('campus.store');
+
+
+Route::get('/branch', [BranchController::class, 'index'])->middleware(['auth', 'verified'])->name('branch.list');
+Route::put('/branch/delete/{id}', [BranchController::class, 'delete'])->middleware(['auth', 'verified'])->name('branch.delete');
+Route::get('/branch/edit/{id}', [BranchController::class, 'edit'])->name('branch.edit');
+Route::put('/branch/{id}', [BranchController::class, 'update'])->middleware(['auth', 'verified'])->name('branch.update');
+Route::post('/branch/filter', [BranchController::class, 'filter'])->name('branch.filter');
+Route::get('/branch/add', [BranchController::class, 'add'])->name('branch.add');
+Route::post('/branch', [BranchController::class, 'store'])->name('branch.store');
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

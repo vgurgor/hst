@@ -18,12 +18,12 @@
                         @method('PUT')
                         <div class="flex">
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="inputPassword5" class="block text-gray-700">{{ __('Kampüs Adı') }}</x-input-label>
-                                <x-text-input name="name" type="text" id="inputPassword5" class="form-input w-full" value="{{ $campus->name }}"  />
+                                <x-input-label  for="name" class="block text-gray-700">{{ __('Kampüs Adı') }}</x-input-label>
+                                <x-text-input name="name" type="text" id="name" class="form-input w-full" value="{{ $campus->name }}"  />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="inputPassword5" class="block text-gray-700">Durum</x-input-label>
+                                <x-input-label  for="status" class="block text-gray-700">Durum</x-input-label>
                                 <select name="status" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     <option value="active" @if($campus->status == 'active') selected @endif>
                                         {{ __('active') }}</option>

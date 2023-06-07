@@ -17,6 +17,8 @@ class CampusController extends Controller
 
         $campuses = Campus::where('created_by', $user->id)
             ->where('status', '!=', 'deleted')
+            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
             ->get();
 
         return view('/pages/campus.list', ['campuses' => $campuses]);
@@ -52,9 +54,11 @@ class CampusController extends Controller
         }
         $query->where('status', '!=', 'deleted');
         $query->where('created_by', $user->id);
+        $query->orderByDesc('updated_at');
+        $query->orderByDesc('created_at');
 
         $campuses = $query->get();
-        return view('/pages/campus.list', ['campuses' => $campuses,'name'=>$name]);
+        return view('/pages/campus.list', ['campuses' => $campuses,'name'=>$name, 'status'=>$status, 'filter'=>true]);
     }
 
     public function add()

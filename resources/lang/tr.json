@@ -11,7 +11,6 @@
     "Confirm": "Onayla",
     "Confirm Password": "Parolayı Onayla",
     "Current Password": "Mevcut Parola",
-    "Dashboard": "Gösterge Paneli",
     "Delete Account": "Hesabı Sil",
     "Email": "E-Posta",
     "Email Password Reset Link": "Parola Sıfırlama Bağlantısını Gönder",
@@ -69,5 +68,6 @@
     "You're logged in!": "Giriş yaptınız!",
     "Your email address is unverified.": "E-posta adresiniz doğrulanmadı.",
     "active": "Aktif",
-    "inactive": "Pasif"
+    "inactive": "Pasif",
+    "Dashboard": "Ana Sayfa"
 }
