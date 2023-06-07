@@ -37,7 +37,7 @@
                             <div class=" text-right">
                                 <div class="text-right">
                                     <button name="submit" type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-sm text-sm w-full">
-                                        {{ __('Ekle') }}
+                                        {{ __('Kaydet') }}
                                     </button>
                                 </div>
                             </div>
