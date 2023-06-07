@@ -15,4 +15,9 @@ class Grade extends Model
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function campus()
+    {
+        return $this->hasOneThrough(Campus::class, Branch::class, 'id', 'id', 'branch_id', 'campus_id');
+    }
 }

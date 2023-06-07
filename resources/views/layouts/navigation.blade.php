@@ -29,7 +29,7 @@
                             <x-dropdown-link :href="route('branch.list')" :active="request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit')">
                                 {{ __('Şube') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('dashboard')" :active="request()->routeIs('okul.create')">
+                            <x-dropdown-link :href="route('grade.list')" :active="request()->routeIs('grade.list') || request()->routeIs('grade.filter') || request()->routeIs('grade.add')  || request()->routeIs('grade.edit')">
                                 {{ __('Düzey') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('dashboard')" :active="request()->routeIs('okul.create')">
