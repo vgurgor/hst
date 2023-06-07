@@ -17,16 +17,16 @@
                     </x-nav-link>
                     <x-dropdown align="left">
                         <x-slot name="trigger" >
-                            <x-nav-link href="#" :active="request()->routeIs('campus.list')" :active="request()->routeIs('branch.list')">
+                            <x-nav-link href="#" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit') || request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit')">
                                 {{ __('Okul Yönetimi') }}
                             </x-nav-link>
                         </x-slot>
 
                         <x-slot name="content" >
-                            <x-dropdown-link :href="route('campus.list')" :active="request()->routeIs('campus.list')">
+                            <x-dropdown-link :href="route('campus.list')" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit')">
                                 {{ __('Kampüs') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('branch.list')" :active="request()->routeIs('branch.list')">
+                            <x-dropdown-link :href="route('branch.list')" :active="request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit')">
                                 {{ __('Şube') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('dashboard')" :active="request()->routeIs('okul.create')">
