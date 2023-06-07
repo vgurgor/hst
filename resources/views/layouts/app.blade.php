@@ -32,7 +32,7 @@
                 {{ $slot }}
             </main>
         </div>
-        <div class="fixed bottom-4 right-4">
+        <div class="fixed bottom-6 right-10">
             <div>
                 <input type="checkbox" class="checkbox" id="theme-toggle">
                 <label for="theme-toggle" class="checkbox-label">
