@@ -12,7 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/font/bootstrap-icons.css'])
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -46,5 +47,21 @@
                 </label>
             </div>
         </div>
+        @if(session('success'))
+            <div x-data="{ show: true, message: '{{ session('success') }}' }"
+                 x-show.transition.duration.500ms="show"
+                 x-init="setTimeout(() => show = false, 5000)"
+                 class="fixed top-10 right-10 bg-green-500 text-white py-2 px-4 rounded-l-lg transition-all ease-in-out duration-1000">
+                <p x-text="message"></p>
+            </div>
+        @endif
+        @if(session('error'))
+            <div x-data="{ show: true, message: '{{ session('error') }}' }"
+                 x-show.transition.duration.500ms="show"
+                 x-init="setTimeout(() => show = false, 5000)"
+                 class="fixed top-10 right-10 bg-red-500 text-white py-2 px-4 rounded-l-lg transition-all ease-in-out duration-1000">
+                <p x-text="message"></p>
+            </div>
+        @endif
     </body>
 </html>

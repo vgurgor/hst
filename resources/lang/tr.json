@@ -11,7 +11,7 @@
     "Confirm": "Onayla",
     "Confirm Password": "Parolayı Onayla",
     "Current Password": "Mevcut Parola",
-    "Dashboard": "Ana Sayfa",
+    "Dashboard": "Gösterge Paneli",
     "Delete Account": "Hesabı Sil",
     "Email": "E-Posta",
     "Email Password Reset Link": "Parola Sıfırlama Bağlantısını Gönder",
@@ -67,5 +67,7 @@
     "Whoops!": "Hoppala!",
     "You are receiving this email because we received a password reset request for your account.": "Hesabınız adına bir parola sıfırlama talebi aldığımız için bu e-postayı alıyorsunuz.",
     "You're logged in!": "Giriş yaptınız!",
-    "Your email address is unverified.": "E-posta adresiniz doğrulanmadı."
+    "Your email address is unverified.": "E-posta adresiniz doğrulanmadı.",
+    "active": "Aktif",
+    "inactive": "Pasif"
 }

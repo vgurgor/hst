@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WEB\CampusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
+
+Route::get('/campus', [CampusController::class, 'index'])->middleware(['auth', 'verified'])->name('campus.list');
+Route::put('/campus/delete/{id}', [CampusController::class, 'delete'])->middleware(['auth', 'verified'])->name('campus.delete');
+Route::get('/campuses/edit/{id}', [CampusController::class, 'edit'])->name('campus.edit');
+Route::put('/campus/{id}', [CampusController::class, 'update'])->middleware(['auth', 'verified'])->name('campus.update');
+Route::post('/campus/filter', [CampusController::class, 'filter'])->name('campus.filter');
+Route::get('/campus/add', [CampusController::class, 'add'])->name('campus.add');
+Route::post('/campus', [CampusController::class, 'store'])->name('campus.store');
+
+Route::get('change-language/{locale}', function ($locale) {
+    if (!in_array($locale, ['tr', 'en'])) {
+        abort(404);
+    }
+
+    session(['locale' => $locale]);
+
+    return back();
+})->name('changeLanguage');
 
 require __DIR__.'/auth.php';

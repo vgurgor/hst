@@ -19,5 +19,6 @@ class Campus extends Model
         'updated_by',
         'updated_at',
     ];
+    protected $status = array("active"=>"Aktif", "inactive"=>"Pasif");
 }
 
