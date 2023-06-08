@@ -5,6 +5,7 @@ use App\Http\Controllers\WEB\CampusController;
 use App\Http\Controllers\WEB\BranchController;
 use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
+use App\Http\Controllers\WEB\MajorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,35 +36,43 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/campus', [CampusController::class, 'index'])->middleware(['auth', 'verified'])->name('campus.list');
 Route::put('/campus/delete/{id}', [CampusController::class, 'delete'])->middleware(['auth', 'verified'])->name('campus.delete');
-Route::get('/campuses/edit/{id}', [CampusController::class, 'edit'])->name('campus.edit');
+Route::get('/campuses/edit/{id}', [CampusController::class, 'edit'])->middleware(['auth', 'verified'])->name('campus.edit');
 Route::put('/campus/{id}', [CampusController::class, 'update'])->middleware(['auth', 'verified'])->name('campus.update');
-Route::post('/campus/filter', [CampusController::class, 'filter'])->name('campus.filter');
-Route::get('/campus/add', [CampusController::class, 'add'])->name('campus.add');
-Route::post('/campus', [CampusController::class, 'store'])->name('campus.store');
+Route::post('/campus/filter', [CampusController::class, 'filter'])->middleware(['auth', 'verified'])->name('campus.filter');
+Route::get('/campus/add', [CampusController::class, 'add'])->middleware(['auth', 'verified'])->name('campus.add');
+Route::post('/campus', [CampusController::class, 'store'])->middleware(['auth', 'verified'])->name('campus.store');
 
 Route::get('/branch', [BranchController::class, 'index'])->middleware(['auth', 'verified'])->name('branch.list');
 Route::put('/branch/delete/{id}', [BranchController::class, 'delete'])->middleware(['auth', 'verified'])->name('branch.delete');
-Route::get('/branch/edit/{id}', [BranchController::class, 'edit'])->name('branch.edit');
+Route::get('/branch/edit/{id}', [BranchController::class, 'edit'])->middleware(['auth', 'verified'])->name('branch.edit');
 Route::put('/branch/{id}', [BranchController::class, 'update'])->middleware(['auth', 'verified'])->name('branch.update');
-Route::post('/branch/filter', [BranchController::class, 'filter'])->name('branch.filter');
-Route::get('/branch/add', [BranchController::class, 'add'])->name('branch.add');
-Route::post('/branch', [BranchController::class, 'store'])->name('branch.store');
+Route::post('/branch/filter', [BranchController::class, 'filter'])->middleware(['auth', 'verified'])->name('branch.filter');
+Route::get('/branch/add', [BranchController::class, 'add'])->middleware(['auth', 'verified'])->name('branch.add');
+Route::post('/branch', [BranchController::class, 'store'])->middleware(['auth', 'verified'])->name('branch.store');
 
 Route::get('/grade', [GradeController::class, 'index'])->middleware(['auth', 'verified'])->name('grade.list');
 Route::put('/grade/delete/{id}', [GradeController::class, 'delete'])->middleware(['auth', 'verified'])->name('grade.delete');
-Route::get('/grade/edit/{id}', [GradeController::class, 'edit'])->name('grade.edit');
+Route::get('/grade/edit/{id}', [GradeController::class, 'edit'])->middleware(['auth', 'verified'])->name('grade.edit');
 Route::put('/grade/{id}', [GradeController::class, 'update'])->middleware(['auth', 'verified'])->name('grade.update');
-Route::post('/grade/filter', [GradeController::class, 'filter'])->name('grade.filter');
-Route::get('/grade/add', [GradeController::class, 'add'])->name('grade.add');
-Route::post('/grade', [GradeController::class, 'store'])->name('grade.store');
+Route::post('/grade/filter', [GradeController::class, 'filter'])->middleware(['auth', 'verified'])->name('grade.filter');
+Route::get('/grade/add', [GradeController::class, 'add'])->middleware(['auth', 'verified'])->name('grade.add');
+Route::post('/grade', [GradeController::class, 'store'])->middleware(['auth', 'verified'])->name('grade.store');
 
 Route::get('/classroom', [ClassroomController::class, 'index'])->middleware(['auth', 'verified'])->name('classroom.list');
 Route::put('/classroom/delete/{id}', [ClassroomController::class, 'delete'])->middleware(['auth', 'verified'])->name('classroom.delete');
-Route::get('/classroom/edit/{id}', [ClassroomController::class, 'edit'])->name('classroom.edit');
+Route::get('/classroom/edit/{id}', [ClassroomController::class, 'edit'])->middleware(['auth', 'verified'])->name('classroom.edit');
 Route::put('/classroom/{id}', [ClassroomController::class, 'update'])->middleware(['auth', 'verified'])->name('classroom.update');
-Route::post('/classroom/filter', [ClassroomController::class, 'filter'])->name('classroom.filter');
-Route::get('/classroom/add', [ClassroomController::class, 'add'])->name('classroom.add');
-Route::post('/classroom', [ClassroomController::class, 'store'])->name('classroom.store');
+Route::post('/classroom/filter', [ClassroomController::class, 'filter'])->middleware(['auth', 'verified'])->name('classroom.filter');
+Route::get('/classroom/add', [ClassroomController::class, 'add'])->middleware(['auth', 'verified'])->name('classroom.add');
+Route::post('/classroom', [ClassroomController::class, 'store'])->middleware(['auth', 'verified'])->name('classroom.store');
+
+Route::get('/major', [MajorController::class, 'index'])->middleware(['auth', 'verified'])->name('major.list');
+Route::put('/major/delete/{id}', [MajorController::class, 'delete'])->middleware(['auth', 'verified'])->name('major.delete');
+Route::get('/major/edit/{id}', [MajorController::class, 'edit'])->middleware(['auth', 'verified'])->name('major.edit');
+Route::put('/major/{id}', [MajorController::class, 'update'])->middleware(['auth', 'verified'])->name('major.update');
+Route::post('/major/filter', [MajorController::class, 'filter'])->middleware(['auth', 'verified'])->name('major.filter');
+Route::get('/major/add', [MajorController::class, 'add'])->middleware(['auth', 'verified'])->name('major.add');
+Route::post('/major', [MajorController::class, 'store'])->middleware(['auth', 'verified'])->name('major.store');
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

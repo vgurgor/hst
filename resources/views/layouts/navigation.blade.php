@@ -17,7 +17,7 @@
                     </x-nav-link>
                     <x-dropdown align="left">
                         <x-slot name="trigger" >
-                            <x-nav-link href="#" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit') || request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit') || request()->routeIs('grade.list') || request()->routeIs('grade.filter') || request()->routeIs('grade.add')  || request()->routeIs('grade.edit') ||request()->routeIs('classroom.list') || request()->routeIs('classroom.filter') || request()->routeIs('classroom.add')  || request()->routeIs('classroom.edit')">
+                            <x-nav-link href="#" :active="request()->routeIs('campus.list') || request()->routeIs('campus.filter') || request()->routeIs('campus.add')  || request()->routeIs('campus.edit') || request()->routeIs('branch.list') || request()->routeIs('branch.filter') || request()->routeIs('branch.add')  || request()->routeIs('branch.edit') || request()->routeIs('grade.list') || request()->routeIs('grade.filter') || request()->routeIs('grade.add')  || request()->routeIs('grade.edit') ||request()->routeIs('classroom.list') || request()->routeIs('classroom.filter') || request()->routeIs('classroom.add')  || request()->routeIs('classroom.edit') || request()->routeIs('major.list') || request()->routeIs('major.filter') || request()->routeIs('major.add')  || request()->routeIs('major.edit')">
                                 {{ __('Okul Yönetimi') }}
                             </x-nav-link>
                         </x-slot>
@@ -35,7 +35,7 @@
                             <x-dropdown-link :href="route('classroom.list')" :active="request()->routeIs('classroom.list') || request()->routeIs('classroom.filter') || request()->routeIs('classroom.add')  || request()->routeIs('classroom.edit')">
                                 {{ __('Sınıf') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('dashboard')" :active="request()->routeIs('okul.create')">
+                            <x-dropdown-link :href="route('major.list')" :active="request()->routeIs('major.list') || request()->routeIs('major.filter') || request()->routeIs('major.add')  || request()->routeIs('major.edit')">
                                 {{ __('Branş') }}
                             </x-dropdown-link>
                         </x-slot>
