@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WEB\CampusController;
 use App\Http\Controllers\WEB\BranchController;
+use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,14 @@ Route::put('/grade/{id}', [GradeController::class, 'update'])->middleware(['auth
 Route::post('/grade/filter', [GradeController::class, 'filter'])->name('grade.filter');
 Route::get('/grade/add', [GradeController::class, 'add'])->name('grade.add');
 Route::post('/grade', [GradeController::class, 'store'])->name('grade.store');
+
+Route::get('/classroom', [ClassroomController::class, 'index'])->middleware(['auth', 'verified'])->name('classroom.list');
+Route::put('/classroom/delete/{id}', [ClassroomController::class, 'delete'])->middleware(['auth', 'verified'])->name('classroom.delete');
+Route::get('/classroom/edit/{id}', [ClassroomController::class, 'edit'])->name('classroom.edit');
+Route::put('/classroom/{id}', [ClassroomController::class, 'update'])->middleware(['auth', 'verified'])->name('classroom.update');
+Route::post('/classroom/filter', [ClassroomController::class, 'filter'])->name('classroom.filter');
+Route::get('/classroom/add', [ClassroomController::class, 'add'])->name('classroom.add');
+Route::post('/classroom', [ClassroomController::class, 'store'])->name('classroom.store');
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

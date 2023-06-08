@@ -29,4 +29,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
+
+    public function campus()
+    {
+        return $this->hasOneThrough(Campus::class, Branch::class, 'id', 'id', 'branch_id', 'campus_id');
+    }
 }
