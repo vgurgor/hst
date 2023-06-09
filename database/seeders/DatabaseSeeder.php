@@ -18,5 +18,26 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\BranchType::create([
+            'code' => 'AO',
+            'name' => 'Ana Okulu',
+        ]);
+        \App\Models\BranchType::create([
+            'code' => 'IO',
+            'name' => 'İlk Okul',
+        ]);
+        \App\Models\BranchType::create([
+            'code' => 'OO',
+            'name' => 'Orta Okul',
+        ]);
+        \App\Models\BranchType::create([
+            'code' => 'LS',
+            'name' => 'Lise',
+        ]);
+        \App\Models\BranchType::create([
+            'code' => 'K',
+            'name' => 'Kurs',
+        ]);
     }
 }
