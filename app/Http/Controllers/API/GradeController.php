@@ -21,8 +21,7 @@ class GradeController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'name' => 'required',
-                'branch_id' => 'required|exists:branches,id'
+                'name' => 'required'
             ]);
 
             $validatedData['created_by'] = Auth::id();
@@ -52,8 +51,7 @@ class GradeController extends Controller
             $grade = Grade::findOrFail($id);
 
             $validatedData = $request->validate([
-                'name' => 'required',
-                'branch_id' => 'required|exists:branches,id'
+                'name' => 'required'
             ]);
 
             $validatedData['updated_by'] = Auth::id();

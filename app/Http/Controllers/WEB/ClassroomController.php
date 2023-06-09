@@ -40,14 +40,17 @@ class ClassroomController extends Controller
             ->orderBy('name')
             ->get();
 
-        $grades = Grade::with('campus')
-            ->where('created_by', $user->id)
+        $branchesData = array();
+        foreach ($branches as $branch){
+            $branchesData[$branch->campus->name][$branch->id] = $branch->name;
+        }
+
+        $grades = Grade::where('created_by', $user->id)
             ->where('status', 'active')
             ->orderBy('name')
             ->get();
 
-
-        return view('/pages/classroom.list', ["classrooms"=>$classrooms,"branchTypes" => $branchTypesData,'branches' => $branches, 'grades'=>$grades]);
+        return view('/pages/classroom.list', ["classrooms"=>$classrooms,"branchTypes" => $branchTypesData,'branches' => $branchesData, 'grades'=>$grades]);
     }
 
     public function delete(Request $request, $id)
@@ -96,14 +99,18 @@ class ClassroomController extends Controller
             ->orderBy('name')
             ->get();
 
+        $branchesData = array();
+        foreach ($branches as $branch){
+            $branchesData[$branch->campus->name][$branch->id] = $branch->name;
+        }
+
         $branchTypes = BranchType::get();
         $branchTypesData = array();
         foreach ($branchTypes as $branchType){
             $branchTypesData[$branchType->code] = $branchType->name;
         }
 
-        $grades = Grade::with('campus')
-            ->where('created_by', $user->id)
+        $grades = Grade::where('created_by', $user->id)
             ->where('status', 'active')
             ->orderBy('name')
             ->get();
@@ -111,7 +118,7 @@ class ClassroomController extends Controller
 
         $classrooms = $query->get();
         return view('/pages/classroom.list',
-            ["classrooms"=>$classrooms,'grades'=>$grades,'branch_id'=>$branch_id,'grade_id'=>$grade_id,'name'=>$name,'status'=>$status,"branches"=>$branches,"branchTypes" => $branchTypesData,"filter"=>true]
+            ["classrooms"=>$classrooms,'grades'=>$grades,'branch_id'=>$branch_id,'grade_id'=>$grade_id,'name'=>$name,'status'=>$status,"branches"=>$branchesData,"branchTypes" => $branchTypesData,"filter"=>true]
         );
     }
 
@@ -128,6 +135,11 @@ class ClassroomController extends Controller
             return redirect()->back()->with('error', 'Öncelikle şube oluşturmalısınız');
         }
 
+        $branchesData = array();
+        foreach ($branches as $branch){
+            $branchesData[$branch->campus->name][$branch->id] = $branch->name;
+        }
+
         $grades = Grade::where('created_by', $user->id)
             ->where('status', 'active')
             ->orderBy('name')
@@ -137,7 +149,7 @@ class ClassroomController extends Controller
             return redirect()->back()->with('error', 'Öncelikle düzey oluşturmalısınız');
         }
 
-        return view('/pages/classroom.add', ["branches" => $branches, "grades" => $grades]);
+        return view('/pages/classroom.add', ["branches" => $branchesData, "grades" => $grades]);
     }
 
     public function edit(Request $request, $id)
@@ -154,6 +166,11 @@ class ClassroomController extends Controller
                 return redirect()->back()->with('error', 'Öncelikle şube oluşturmalısınız');
             }
 
+            $branchesData = array();
+            foreach ($branches as $branch){
+                $branchesData[$branch->campus->name][$branch->id] = $branch->name;
+            }
+
             $grades = Grade::where('created_by', $user->id)
                 ->where('status', 'active')
                 ->orderBy('name')
@@ -164,7 +181,7 @@ class ClassroomController extends Controller
             }
 
 
-            return view('/pages/classroom.edit', ["classroom"=>$classroom,"branches" => $branches,"grades"=>$grades]);
+            return view('/pages/classroom.edit', ["classroom"=>$classroom,"branches" => $branchesData,"grades"=>$grades]);
 
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Sınıf bulunamadı');

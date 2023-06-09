@@ -63,7 +63,7 @@ class BranchController extends Controller
         $query = Branch::query();
 
         if (!empty($campus_id)) {
-            $query->where('campus_id', $campus_id);
+            $query->whereIn('campus_id', $campus_id);
         }
 
         if (!empty($name)) {

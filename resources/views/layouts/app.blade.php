@@ -10,10 +10,15 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.6.0/dist/multiple-select.min.css">
+        <script src="https://unpkg.com/multiple-select@1.6.0/dist/multiple-select.min.js"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/font/bootstrap-icons.css'])
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -63,5 +68,42 @@
                 <p x-text="message"></p>
             </div>
         @endif
+
+        <script>
+            $("select:not([multiple=multiple])").not(".ns").select2();
+            $("select:not([multiple=multiple]).ns").select2({minimumResultsForSearch: -1});
+            $("select[multiple=multiple]").not(".ns").multipleSelect({
+                filter: true,
+                formatSelectAll: function () {
+                    return '{{ __('Tümünü seç') }}'
+                },
+                formatAllSelected: function () {
+                    return '{{ __('Tümü seçildi') }}'
+                },
+                formatCountSelected: function () {
+                    return count+ '{{ __(' seçildi') }}'
+                },
+                formatNoMatchesFound : function () {
+                    return '{{ __('Sonuç bulunamadı') }}'
+                }
+
+            });
+            $("select[multiple=multiple].ns").multipleSelect({
+                filter: false,
+                formatSelectAll: function () {
+                    return '{{ __('Tümünü seç') }}'
+                },
+                formatAllSelected: function () {
+                    return '{{ __('Tümü seçildi') }}'
+                },
+                formatCountSelected: function () {
+                    return count+ '{{ __(' seçildi') }}'
+                },
+                formatNoMatchesFound : function () {
+                    return '{{ __('Sonuç bulunamadı') }}'
+                }
+
+            });
+        </script>
     </body>
 </html>

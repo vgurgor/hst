@@ -38,3 +38,25 @@
 .checkbox:checked + .checkbox-label .ball {
     transform: translateX(44px);
 }
+
+.select2-selection__rendered  {
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+}
+
+.select2-container .select2-selection--single {
+    height: 42px;
+}
+
+.ms-choice{
+    height: 42px;
+}
+
+.ms-choice span{
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+}

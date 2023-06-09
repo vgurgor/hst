@@ -9,15 +9,7 @@ class Grade extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'branch_id', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'status', 'created_by', 'updated_by'];
 
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
 
-    public function campus()
-    {
-        return $this->hasOneThrough(Campus::class, Branch::class, 'id', 'id', 'branch_id', 'campus_id');
-    }
 }

@@ -20,8 +20,12 @@
                             <div class="w-1/2 p-3">
                                 <x-input-label for="branch_id" class="block text-gray-700">{{ __('Şube') }}</x-input-label>
                                 <select name="branch_id" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    @foreach ($branches as $branch)
-                                        <option value="{{ $branch->id }}" @if($branch->id == $classroom->branch_id) selected @endif>{{ $branch->name }}</option>
+                                    @foreach ($branches as $key => $value)
+                                        <optgroup label="{{$key}}">
+                                            @foreach ($value as $id => $branch)
+                                                <option value="{{ $id }}" @if(!empty($branch_id) && in_array($id, $branch_id)) selected @endif>{{ $branch }}</option>
+                                            @endforeach
+                                        </optgroup>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('grade_id')" class="mt-2" />
@@ -44,7 +48,7 @@
                             </div>
                             <div class="w-1/2 p-3">
                                 <x-input-label  for="status" class="block text-gray-700">Durum</x-input-label>
-                                <select name="status" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                <select name="status" class="ns w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     <option value="active" @if("active" == $classroom->status) selected @endif>
                                         {{ __('active') }}</option>
                                     <option value="inactive" @if("inactive" == $classroom->status) selected @endif>
