@@ -27,4 +27,9 @@ class Major extends Model
         return $this->belongsTo(User::class, 'updated_by');
     }
 
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
+
 }

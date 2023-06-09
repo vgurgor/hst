@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('status')->default('active');
-            $table->string('majors')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->json('majors')->nullable();
             $table->timestamps();
         });
     }

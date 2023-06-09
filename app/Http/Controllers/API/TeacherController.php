@@ -23,13 +23,9 @@ class TeacherController extends Controller
             $validatedData = $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'email' => 'required|email|unique:teachers,email',
-                'password' => 'required',
                 'status' => 'required',
                 'majors' => 'required'
             ]);
-
-            $validatedData['password'] = Hash::make($validatedData['password']);
 
             $teacher = Teacher::create($validatedData);
 
@@ -58,7 +54,6 @@ class TeacherController extends Controller
                 $validatedData = $request->validate([
                     'first_name' => 'required',
                     'last_name' => 'required',
-                    'email' => 'required|email|unique:teachers,email,' . $id,
                     'status' => 'required',
                     'majors' => 'required'
                 ]);
