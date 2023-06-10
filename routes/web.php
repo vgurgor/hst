@@ -6,6 +6,7 @@ use App\Http\Controllers\WEB\BranchController;
 use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
 use App\Http\Controllers\WEB\MajorController;
+use App\Http\Controllers\WEB\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +74,15 @@ Route::put('/major/{id}', [MajorController::class, 'update'])->middleware(['auth
 Route::post('/major/filter', [MajorController::class, 'filter'])->middleware(['auth', 'verified'])->name('major.filter');
 Route::get('/major/add', [MajorController::class, 'add'])->middleware(['auth', 'verified'])->name('major.add');
 Route::post('/major', [MajorController::class, 'store'])->middleware(['auth', 'verified'])->name('major.store');
+
+Route::get('/teacher', [TeacherController::class, 'index'])->middleware(['auth', 'verified'])->name('teacher.list');
+Route::put('/teacher/delete/{id}', [TeacherController::class, 'delete'])->middleware(['auth', 'verified'])->name('teacher.delete');
+Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->middleware(['auth', 'verified'])->name('teacher.edit');
+Route::put('/teacher/{id}', [TeacherController::class, 'update'])->middleware(['auth', 'verified'])->name('teacher.update');
+Route::post('/teacher/filter', [TeacherController::class, 'filter'])->middleware(['auth', 'verified'])->name('teacher.filter');
+Route::get('/teacher/add', [TeacherController::class, 'add'])->middleware(['auth', 'verified'])->name('teacher.add');
+Route::post('/teacher', [TeacherController::class, 'store'])->middleware(['auth', 'verified'])->name('teacher.store');
+
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

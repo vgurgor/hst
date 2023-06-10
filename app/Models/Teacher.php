@@ -19,8 +19,15 @@ class Teacher extends Model
         'first_name',
         'last_name',
         'status',
-        'majors'
+        'created_by',
+        'updated_by'
     ];
+
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class);
+    }
 
     public function majors()
     {
