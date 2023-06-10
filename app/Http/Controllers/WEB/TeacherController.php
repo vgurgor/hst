@@ -157,7 +157,7 @@ class TeacherController extends Controller
             ->get();
 
 
-        if ($branches->isEmpty()) {
+        if ($majors->isEmpty()) {
             return redirect()->back()->with('error', 'Öncelikle branş oluşturmalısınız');
         }
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\WEB\CampusController;
 use App\Http\Controllers\WEB\BranchController;
 use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
+use App\Http\Controllers\WEB\LessonController;
 use App\Http\Controllers\WEB\MajorController;
 use App\Http\Controllers\WEB\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,14 @@ Route::put('/teacher/{id}', [TeacherController::class, 'update'])->middleware(['
 Route::post('/teacher/filter', [TeacherController::class, 'filter'])->middleware(['auth', 'verified'])->name('teacher.filter');
 Route::get('/teacher/add', [TeacherController::class, 'add'])->middleware(['auth', 'verified'])->name('teacher.add');
 Route::post('/teacher', [TeacherController::class, 'store'])->middleware(['auth', 'verified'])->name('teacher.store');
+
+Route::get('/lesson', [LessonController::class, 'index'])->middleware(['auth', 'verified'])->name('lesson.list');
+Route::put('/lesson/delete/{id}', [LessonController::class, 'delete'])->middleware(['auth', 'verified'])->name('lesson.delete');
+Route::get('/lesson/edit/{id}', [LessonController::class, 'edit'])->middleware(['auth', 'verified'])->name('lesson.edit');
+Route::put('/lesson/{id}', [LessonController::class, 'update'])->middleware(['auth', 'verified'])->name('lesson.update');
+Route::post('/lesson/filter', [LessonController::class, 'filter'])->middleware(['auth', 'verified'])->name('lesson.filter');
+Route::get('/lesson/add', [LessonController::class, 'add'])->middleware(['auth', 'verified'])->name('lesson.add');
+Route::post('/lesson', [LessonController::class, 'store'])->middleware(['auth', 'verified'])->name('lesson.store');
 
 
 Route::get('change-language/{locale}', function ($locale) {

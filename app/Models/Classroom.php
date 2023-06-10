@@ -34,4 +34,14 @@ class Classroom extends Model
     {
         return $this->hasOneThrough(Campus::class, Branch::class, 'id', 'id', 'branch_id', 'campus_id');
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
 }

@@ -20,6 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
     }
 
