@@ -44,4 +44,12 @@
             </x-primary-button>
         </div>
     </form>
+    <div class="flex items-center justify-center mt-5">
+        <a class="w-full underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+            <x-primary-button class="w-full mt-3 text-center bg-red-600 hover:bg-red-500 focus:bg-red-600">
+                {{ __('Register') }}
+            </x-primary-button>
+        </a>
+    </div>
 </x-guest-layout>
+

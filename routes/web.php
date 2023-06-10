@@ -6,6 +6,7 @@ use App\Http\Controllers\WEB\BranchController;
 use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
 use App\Http\Controllers\WEB\LessonController;
+use App\Http\Controllers\WEB\LessonSlotController;
 use App\Http\Controllers\WEB\MajorController;
 use App\Http\Controllers\WEB\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,11 @@ Route::post('/lesson/filter', [LessonController::class, 'filter'])->middleware([
 Route::get('/lesson/add', [LessonController::class, 'add'])->middleware(['auth', 'verified'])->name('lesson.add');
 Route::post('/lesson', [LessonController::class, 'store'])->middleware(['auth', 'verified'])->name('lesson.store');
 
+Route::get('/lesson-slot', [LessonSlotController::class, 'index'])->middleware(['auth', 'verified'])->name('lesson-slot.list');
+Route::put('/lesson-slot/delete/{id}', [LessonSlotController::class, 'delete'])->middleware(['auth', 'verified'])->name('lesson-slot.delete');
+Route::post('/lesson-slot/filter', [LessonSlotController::class, 'filter'])->middleware(['auth', 'verified'])->name('lesson-slot.filter');
+Route::get('/lesson-slot/add', [LessonSlotController::class, 'add'])->middleware(['auth', 'verified'])->name('lesson-slot.add');
+Route::post('/lesson-slot', [LessonSlotController::class, 'store'])->middleware(['auth', 'verified'])->name('lesson-slot.store');
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

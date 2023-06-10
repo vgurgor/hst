@@ -13,24 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-
         Schema::create('lesson_slots', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('campus_id');
             $table->string('day');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->string('status')->nullable()->default('active');
 
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('campus_id')->references('id')->on('campuses')->onDelete('cascade');
 
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
-
-
     }
 
     /**

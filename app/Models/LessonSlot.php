@@ -10,15 +10,16 @@ class LessonSlot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'classroom_id',
+        'campus',
         'day',
         'start_time',
         'end_time',
     ];
 
-    public function classroom()
+
+    public function campus()
     {
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsTo(Campus::class);
     }
 
     public function createdBy()
@@ -30,4 +31,5 @@ class LessonSlot extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
 }

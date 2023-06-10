@@ -61,8 +61,11 @@
                         </x-slot>
 
                         <x-slot name="content" >
-                            <x-dropdown-link :href="route('lesson.list')" :active="request()->routeIs('lesson.list') || request()->routeIs('lesson.filter') || request()->routeIs('lesson.add')  || request()->routeIs('lesson.edit')">
+                            <x-dropdown-link :href="route('lesson.list')" :active="request()->routeIs('lesson.list') || request()->routeIs('lesson.filter') || request()->routeIs('lesson.add')  || request()->routeIs('lesson.edit') || request()->routeIs('lesson-slot.list') || request()->routeIs('lesson-slot.filter') || request()->routeIs('lesson-slot.add')  || request()->routeIs('lesson-slot.edit')">
                                 {{ __('Ders') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('lesson-slot.list')" :active="request()->routeIs('lesson-slot.list') || request()->routeIs('lesson-slot.filter') || request()->routeIs('lesson-slot.add')  || request()->routeIs('lesson-slot.edit')">
+                                {{ __('Ders Slotları') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
