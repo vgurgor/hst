@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="text-right">
                                     @if(!empty($filter) && $filter)
-                                    <a href="{{ route('lesson-slot.list') }}" class="mr-3 text-red-600"><span class="bi bi-x-circle"> </span>Filtreleri temizle</a>
+                                    <a href="{{ route('lesson-slot.list') }}" class="mr-3 text-red-600"><span class="bi bi-x-circle"> </span>{{__('Filtreleri temizle')}}</a>
                                     @endif
                                     <button name="submit" type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-sm text-sm">
                                         {{ __('Filtreleri Uygula') }}
@@ -38,7 +38,7 @@
                         </div>
                         <div class="flex">
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="status" class="block text-gray-700">Kampüs</x-input-label>
+                                <x-input-label  for="status" class="block text-gray-700">{{__('Kampüs')}}</x-input-label>
                                 <select name="campus_id[]" multiple="multiple" class="ns w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($campuses as $campus)
                                         <option value="{{ $campus->id }}"  @if(!empty($campus_id) && in_array($campus->id, $campus_id)) selected @endif>{{ $campus->name }}</option>

@@ -28,7 +28,7 @@
                                 <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="status" class="block text-gray-700">Durum</x-input-label>
+                                <x-input-label  for="status" class="block text-gray-700">{{__('Durum')}}</x-input-label>
                                 <select name="status" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     <option value="active" @if($teacher->status == 'active') selected @endif>
                                         {{ __('active') }}</option>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="flex">
                             <div class="w-full p-3">
-                                <x-input-label  for="branch_ids" class="block text-gray-700">Görevli Olduğu Şube(ler)</x-input-label>
+                                <x-input-label  for="branch_ids" class="block text-gray-700">{{__('Görevli Olduğu Şube(ler)')}}</x-input-label>
                                 <select name="branch_ids[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($branches as $key => $value)
                                         <optgroup label="{{$key}}">
@@ -55,7 +55,7 @@
                         </div>
                         <div class="flex">
                             <div class="w-full p-3">
-                                <x-input-label  for="major_ids" class="block text-gray-700">Branş(lar)</x-input-label>
+                                <x-input-label  for="major_ids" class="block text-gray-700">{{__('Branş(lar)')}}</x-input-label>
                                 <select name="major_ids[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($majors as $major)
                                         <option value="{{ $major->id }}" @if(!empty($teacher->majors->pluck('id')->toArray()) && in_array($major->id, $teacher->majors->pluck('id')->toArray())) selected @endif>{{ $major->name }}</option>

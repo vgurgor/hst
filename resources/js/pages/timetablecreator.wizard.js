@@ -34,7 +34,7 @@ $(document).ready(function() {
         event.preventDefault();
         if ($("#campus_id").val() != null && $("#campus_id").val() != ""){
             Swal.fire({
-                title: "Lütfen bekleyiniz...",
+                title: waitText+"...",
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 showCloseButton: false,
@@ -88,7 +88,7 @@ $(document).ready(function() {
         event.preventDefault();
         if ($("#branch_id").val() != null && $("#branch_id").val() != ""){
             Swal.fire({
-                title: "Lütfen bekleyiniz...",
+                title: waitText+"...",
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 showCloseButton: false,
@@ -138,7 +138,7 @@ $(document).ready(function() {
         event.preventDefault();
         if ($("#grade_id").val() != null && $("#grade_id").val() != ""){
             Swal.fire({
-                title: "Lütfen bekleyiniz...",
+                title: waitText+"...",
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 showCloseButton: false,
@@ -188,7 +188,7 @@ $(document).ready(function() {
             && $("#grade_id").val() != null && $("#grade_id").val() != ""
             && $("#classrooms").val() != null && $("#classrooms").val() != ""){
             Swal.fire({
-                title: "Lütfen bekleyiniz...",
+                title: waitText+"...",
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 showCloseButton: false,

@@ -12,7 +12,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-2">
-                                Sınıf Seçimi
+                                {{__('Sınıf Seçimi')}}
                             </div>
                         </div>
 
@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-2">
-                                Öğretmen Seçimi
+                                {{__('Öğretmen Seçimi')}}
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-2">
-                                Optimizasyon
+                                {{__('Optimizasyon')}}
                             </div>
                         </div>
 
@@ -45,16 +45,16 @@
                                 </div>
                             </div>
                             <div class="text-center mt-2">
-                                Çıktı
+                                {{__('Çıktı')}}
                             </div>
                         </div>
                     </div>
                     <section class="mb-8 " id="step-1">
                         <div class="flex">
                             <div class="w-1/2 p-3 pl-0 mb-4">
-                                <label for="campus_id" class="block text-gray-700 dark:text-white">Kampüs:</label>
+                                <label for="campus_id" class="block text-gray-700 dark:text-white">{{__('Kampüs')}}</label>
                                 <select id="campus_id" name="campus_id" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <option value="" selected>Seçiniz</option>
+                                    <option value="" selected>{{__('Seçiniz')}}</option>
                                     @foreach ($campuses as $campus)
                                         <option value="{{ $campus->id }}">{{ $campus->name }}</option>
                                     @endforeach
@@ -62,47 +62,47 @@
                             </div>
 
                             <div class="w-1/2 p-3 mb-4">
-                                <label for="branch_id" class="block text-gray-700 dark:text-white">Şube:</label>
+                                <label for="branch_id" class="block text-gray-700 dark:text-white">{{__('Şube')}}</label>
                                 <select id="branch_id" multiple="multiple" name="branch_id[]" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-                                    <option value="">Seçiniz</option>
+                                    <option value="">{{__('Seçiniz')}}</option>
                                 </select>
                             </div>
 
                             <div class="w-1/2 p-3 pr-0 mb-4">
-                                <label for="grade_id" class="block text-gray-700 dark:text-white">Düzey:</label>
+                                <label for="grade_id" class="block text-gray-700 dark:text-white">{{__('Düzey')}}</label>
                                 <select id="grade_id" multiple="multiple" name="grade_id[]" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-                                    <option value="">Seçiniz</option>
+                                    <option value="">{{__('Seçiniz')}}</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="mb-5">
-                            <label for="classrooms" class="block text-gray-700 dark:text-white">Çizelge Oluşturulacak Sınıflar:</label>
+                            <label for="classrooms" class="block text-gray-700 dark:text-white">{{__('Çizelge Oluşturulacak Sınıflar')}}</label>
                             <select id="classrooms" name="classrooms[]" multiple="multiple" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-                                <option value="">Seçiniz</option>
+                                <option value="">{{__('Seçiniz')}}</option>
                             </select>
                         </div>
 
                         <div class="mb-2 w-full text-right">
-                            <button type="button" data-to="2" disabled class="disabled:bg-red-300 nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Sonraki</button>
+                            <button type="button" data-to="2" disabled class="disabled:bg-red-300 nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
                         </div>
 
                     </section>
 
                     <section class="mb-8 hidden" id="step-2">
                         <div class="mb-4">
-                            <label for="teachers" class="block text-gray-700 dark:text-white">Öğretmenler:</label>
+                            <label for="teachers" class="block text-gray-700 dark:text-white">{{__('Öğretmen(ler)')}}</label>
                             <select id="teachers" name="teachers[]" multiple="multiple" class="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
-                                <option value="">Seçiniz</option>
+                                <option value="">{{__('Seçiniz')}}</option>
                             </select>
                         </div>
 
                         <div class="flex">
                             <div class="mb-2 w-1/2 text-left">
-                                <button type="submit" data-to="1" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Önceki</button>
+                                <button type="submit" data-to="1" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Önceki')}}</button>
                             </div>
                             <div class="mb-2 w-1/2 text-right">
-                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Sonraki</button>
+                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
                             </div>
                         </div>
                     </section>
@@ -110,16 +110,16 @@
                     <section class="mb-8 hidden" id="step-3">
                         <div class="w-full mb-20">
                             <div class="p-3">
-                                <p class="pb-3 mb-4"><span class="p-3 bg-red-500 w-40 text-white">1-</span> Öncelikle gurobi optimasyonu için gereken data setini indirin</p>
-                                <button class="bg-red-500 text-white mx-12 px-4 py-2 rounded-md hover:bg-red-700">Gurobi Optimiasyon Data Seti</button>
+                                <p class="pb-3 mb-4"><span class="p-3 bg-red-500 w-40 text-white">1-</span> {{__('Öncelikle gurobi optimasyonu için gereken data setini indirin')}}</p>
+                                <button class="bg-red-500 text-white mx-12 px-4 py-2 rounded-md hover:bg-red-700">{{__('Gurobi Optimiasyon Data Seti')}}</button>
                             </div>
                             <div class="p-3 mt-4">
-                                <p><span class="p-3 bg-red-500 w-40 text-white">2-</span> Optimizasyon sonuç dosyasını yükleyin</p>
+                                <p><span class="p-3 bg-red-500 w-40 text-white">2-</span> {{__('Optimizasyon sonuç dosyasını yükleyin')}}</p>
                                 <div class="py-5 mx-12">
                                     <form action="">
-                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Optimizasyon Sonuç Dosyası</label>
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">{{__('Optimizasyon Sonuç Dosyası')}}</label>
                                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
-                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Sadece .txt uzantılı dosyalar</p>
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{__('Sadece .txt uzantılı dosyalar')}}</p>
                                     </form>
                                 </div>
                             </div>
@@ -127,10 +127,10 @@
 
                         <div class="flex">
                             <div class="mb-2 w-1/2 text-left">
-                                <button type="submit" data-to="2" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Önceki</button>
+                                <button type="submit" data-to="2" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Önceki')}}</button>
                             </div>
                             <div class="mb-2 w-1/2 text-right">
-                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">Sonraki</button>
+                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
                             </div>
                         </div>
                     </section>

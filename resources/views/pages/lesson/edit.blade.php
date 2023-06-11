@@ -18,7 +18,7 @@
                         @method('PUT')
                         <div class="flex">
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="major_id" class="block text-gray-700">Branş</x-input-label>
+                                <x-input-label  for="major_id" class="block text-gray-700">{{__('Branş')}}</x-input-label>
                                 <select name="major_id" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($majors as $major)
                                         <option value="{{ $major->id }}" @if(!empty($lesson->major_id ) && $major->id == $lesson->major_id ) selected @endif>{{ $major->name }}</option>
@@ -27,7 +27,7 @@
                                 <x-input-error :messages="$errors->get('major_id')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="grade_id" class="block text-gray-700">Düzey</x-input-label>
+                                <x-input-label  for="grade_id" class="block text-gray-700">{{__('Düzey')}}</x-input-label>
                                 <select name="grade_id" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}" @if(!empty($lesson->grade_id) && $grade->id == $lesson->grade_id) selected @endif>{{ $grade->name }}</option>
@@ -48,7 +48,7 @@
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="status" class="block text-gray-700">Durum</x-input-label>
+                                <x-input-label  for="status" class="block text-gray-700">{{__('Durum')}}</x-input-label>
                                 <select name="status" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     <option value="active" @if($lesson->status == 'active') selected @endif>
                                         {{ __('active') }}</option>

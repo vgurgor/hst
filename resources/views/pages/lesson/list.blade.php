@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="text-right">
                                     @if(!empty($filter) && $filter)
-                                    <a href="{{ route('lesson.list') }}" class="mr-3 text-red-600"><span class="bi bi-x-circle"> </span>Filtreleri temizle</a>
+                                    <a href="{{ route('lesson.list') }}" class="mr-3 text-red-600"><span class="bi bi-x-circle"> </span>{{__('Filtreleri temizle')}}</a>
                                     @endif
                                     <button name="submit" type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-sm text-sm">
                                         {{ __('Filtreleri Uygula') }}
@@ -42,7 +42,7 @@
                                 <x-text-input name="name" type="text" id="name" class="form-input w-full" value="{{ !empty($name) ? $name : '' }}"  />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="major_id" class="block text-gray-700">Branş</x-input-label>
+                                <x-input-label  for="major_id" class="block text-gray-700">{{__('Branş')}}</x-input-label>
                                 <select name="major_id[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($majors as $major)
                                         <option value="{{ $major->id }}" @if(!empty($major_id) && in_array($major->id, $major_id)) selected @endif>{{ $major->name }}</option>
@@ -51,7 +51,7 @@
                                 <x-input-error :messages="$errors->get('major_id')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="grade_id" class="block text-gray-700">Düzey</x-input-label>
+                                <x-input-label  for="grade_id" class="block text-gray-700">{{__('Düzey')}}</x-input-label>
                                 <select name="grade_id[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}" @if(!empty($grade_id) && in_array($grade->id, $grade_id)) selected @endif>{{ $grade->name }}</option>
@@ -65,9 +65,9 @@
                                 <x-input-error :messages="$errors->get('weekly_frequency')" class="mt-2" />
                             </div>
                             <div class="w-1/2 p-3">
-                                <x-input-label  for="status" class="block text-gray-700">Durum</x-input-label>
+                                <x-input-label  for="status" class="block text-gray-700">{{__('Durum')}}</x-input-label>
                                 <select name="status" class="ns w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    <option value="" selected>Seçiniz</option>
+                                    <option value="" selected>{{__('Seçiniz')}}</option>
                                     <option value="active"  @if(!empty($status) && $status == 'active') selected @endif>
                                         {{ __('active') }}</option>
                                     <option value="inactive"  @if(!empty($status) && $status == 'inactive') selected @endif>

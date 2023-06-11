@@ -39,7 +39,7 @@
                         </div>
                         <div class="flex">
                             <div class="w-full p-3">
-                                <x-input-label  for="branch_ids" class="block text-gray-700">Görevli Olduğu Şube(ler)</x-input-label>
+                                <x-input-label  for="branch_ids" class="block text-gray-700">{{__('Görevli Olduğu Şube(ler)')}}</x-input-label>
                                 <select name="branch_ids[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($branches as $key => $value)
                                         <optgroup label="{{$key}}">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="flex">
                             <div class="w-full p-3">
-                                <x-input-label  for="major_ids" class="block text-gray-700">Branş(lar)</x-input-label>
+                                <x-input-label  for="major_ids" class="block text-gray-700">{{__('Branş(lar)')}}</x-input-label>
                                 <select name="major_ids[]" multiple="multiple" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                                     @foreach ($majors as $major)
                                         <option value="{{ $major->id }}" @if(!empty($branch_id) && in_array($major->id, $branch_id)) selected @endif>{{ $major->name }}</option>
