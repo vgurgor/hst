@@ -69,7 +69,7 @@
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs(' Çizgelge Oluşturucu')">
+                    <x-nav-link :href="route('timetablecreator.wizard')" :active="request()->routeIs('timetablecreator.wizard')">
                         {{ __(' Çizgelge Oluşturucu') }}
                     </x-nav-link>
                 </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\WEB\LessonController;
 use App\Http\Controllers\WEB\LessonSlotController;
 use App\Http\Controllers\WEB\MajorController;
 use App\Http\Controllers\WEB\TeacherController;
+use App\Http\Controllers\WEB\TimetableCreatorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,6 +99,13 @@ Route::put('/lesson-slot/delete/{id}', [LessonSlotController::class, 'delete'])-
 Route::post('/lesson-slot/filter', [LessonSlotController::class, 'filter'])->middleware(['auth', 'verified'])->name('lesson-slot.filter');
 Route::get('/lesson-slot/add', [LessonSlotController::class, 'add'])->middleware(['auth', 'verified'])->name('lesson-slot.add');
 Route::post('/lesson-slot', [LessonSlotController::class, 'store'])->middleware(['auth', 'verified'])->name('lesson-slot.store');
+
+
+Route::get('/timetablecreator/wizard', [TimetableCreatorController::class, 'wizard'])->middleware(['auth', 'verified'])->name('timetablecreator.wizard');
+Route::post('/timetablecreator/ajaxbranches', [TimetableCreatorController::class, 'ajaxbranches'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxbranches');
+Route::post('/timetablecreator/ajaxgrades', [TimetableCreatorController::class, 'ajaxgrades'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxgrades');
+Route::post('/timetablecreator/ajaxclassrooms', [TimetableCreatorController::class, 'ajaxclassrooms'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxclassrooms');
+Route::post('/timetablecreator/ajaxcheckstep', [TimetableCreatorController::class, 'ajaxcheckstep'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxcheckstep');
 
 Route::get('change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['tr', 'en'])) {

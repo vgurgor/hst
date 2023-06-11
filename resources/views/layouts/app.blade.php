@@ -11,11 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.6.0/dist/multiple-select.min.css">
         <script src="https://unpkg.com/multiple-select@1.6.0/dist/multiple-select.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/font/bootstrap-icons.css'])
 
@@ -52,27 +52,41 @@
                 </label>
             </div>
         </div>
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+        </script>
         @if(session('success'))
-            <div x-data="{ show: true, message: '{{ session('success') }}' }"
-                 x-show.transition.duration.500ms="show"
-                 x-init="setTimeout(() => show = false, 5000)"
-                 class="fixed top-10 right-10 bg-green-500 text-white py-2 px-4 rounded-l-lg transition-all ease-in-out duration-1000">
-                <p x-text="message"></p>
-            </div>
+            <script>
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}'
+                })
+            </script>
         @endif
         @if(session('error'))
-            <div x-data="{ show: true, message: '{{ session('error') }}' }"
-                 x-show.transition.duration.500ms="show"
-                 x-init="setTimeout(() => show = false, 5000)"
-                 class="fixed top-10 right-10 bg-red-500 text-white py-2 px-4 rounded-l-lg transition-all ease-in-out duration-1000">
-                <p x-text="message"></p>
-            </div>
+            <script>
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}'
+                })
+            </script>
         @endif
 
         <script>
-            $("select:not([multiple=multiple])").not(".ns").select2();
-            $("select:not([multiple=multiple]).ns").select2({minimumResultsForSearch: -1});
-            $("select[multiple=multiple]").not(".ns").multipleSelect({
+            $("select:not([multiple=multiple])").not(".ns").not(".swal2-select").select2();
+            $("select:not([multiple=multiple]).ns").not(".swal2-select").select2({minimumResultsForSearch: -1});
+            $("select[multiple=multiple]").not(".ns").not(".swal2-select").multipleSelect({
                 filter: true,
                 formatSelectAll: function () {
                     return '{{ __('Tümünü seç') }}'
@@ -88,7 +102,7 @@
                 }
 
             });
-            $("select[multiple=multiple].ns").multipleSelect({
+            $("select[multiple=multiple].ns").not(".swal2-select").multipleSelect({
                 filter: false,
                 formatSelectAll: function () {
                     return '{{ __('Tümünü seç') }}'
