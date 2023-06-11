@@ -28,13 +28,13 @@
                             <div class="w-1/2 p-3">
                                 <x-input-label for="day" class="block text-gray-700">{{ __('Gün') }}</x-input-label>
                                 <select name="day" class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                                    <option value="1">Pazartesi</option>
-                                    <option value="2">Salı</option>
-                                    <option value="3">Çarşamba</option>
-                                    <option value="4">Perşembe</option>
-                                    <option value="5">Cuma</option>
-                                    <option value="6">Cumartesi</option>
-                                    <option value="7">Pazar</option>
+                                    <option value="1">{{__('Pazartesi')}}</option>
+                                    <option value="2">{{__('Salı')}}</option>
+                                    <option value="3">{{__('Çarşamba')}}</option>
+                                    <option value="4">{{__('Perşembe')}}</option>
+                                    <option value="5">{{__('Cuma')}}</option>
+                                    <option value="6">{{__('Cumartesi')}}</option>
+                                    <option value="7">{{__('Pazar')}}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('day')" class="mt-2" />
                             </div>

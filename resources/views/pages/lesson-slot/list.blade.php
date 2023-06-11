@@ -63,7 +63,7 @@
                             @foreach ($lessonSlots as $lessonSlot)
                                 <tr>
                                     <td class="text-center py-2">{{ $lessonSlot->campus->name }}</td>
-                                    <td class="text-center">{{$days[$lessonSlot->day]}}</td>
+                                    <td class="text-center">{{__($days[$lessonSlot->day])}}</td>
                                     <td class="text-center">{{$lessonSlot->start_time}}</td>
                                     <td class="text-center">{{$lessonSlot->end_time}}</td>
                                     <td class="text-center">
