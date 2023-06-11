@@ -109,7 +109,7 @@
                 </x-dropdown>
 
                 @if (app()->getLocale() === 'tr')
-                    <a class="text-red-600" href="{{ route('changeLanguage', 'en') }}" style="width: 32px; height: 24px">
+                    <a class="text-red-600" href="{{ route('changeLang', 'en') }}" style="width: 32px; height: 24px">
                         <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
                             <path fill="#012169" d="M0 0h640v480H0z"/>
                             <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
@@ -119,7 +119,7 @@
                         </svg>
                     </a>
                 @else
-                    <a class="text-red-600" href="{{ route('changeLanguage', 'tr') }}" style="width: 32px; height: 24px">
+                    <a class="text-red-600" href="{{ route('changeLang', 'tr') }}" style="width: 32px; height: 24px">
 
                         <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-tr" viewBox="0 0 640 480">
                             <g fill-rule="evenodd">

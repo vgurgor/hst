@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WEB\CampusController;
 use App\Http\Controllers\WEB\BranchController;
@@ -107,14 +108,7 @@ Route::post('/timetablecreator/ajaxgrades', [TimetableCreatorController::class, 
 Route::post('/timetablecreator/ajaxclassrooms', [TimetableCreatorController::class, 'ajaxclassrooms'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxclassrooms');
 Route::post('/timetablecreator/ajaxcheckstep', [TimetableCreatorController::class, 'ajaxcheckstep'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxcheckstep');
 
-Route::get('change-language/{locale}', function ($locale) {
-    if (!in_array($locale, ['tr', 'en'])) {
-        abort(404);
-    }
-
-    session(['locale' => $locale]);
-
-    return back();
-})->name('changeLanguage');
+Route::get('lang/home', [LangController::class, 'index']);
+Route::get('lang/change/{lang}', [LangController::class, 'change'])->name('changeLang');
 
 require __DIR__.'/auth.php';
