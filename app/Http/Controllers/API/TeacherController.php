@@ -11,12 +11,37 @@ use Illuminate\Validation\ValidationException;
 
 class TeacherController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/teachers",
+     *     summary="Get all teachers",
+     *     tags={"Teachers"},
+     *     @OA\Response(response="200", description="OK"),
+     * )
+     */
     public function index()
     {
         $teachers = Teacher::all();
         return response()->json($teachers);
     }
-
+    /**
+     * @OA\Post(
+     *     path="/api/teachers",
+     *     summary="Create a new teacher",
+     *     tags={"Teachers"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="first_name", type="string"),
+     *             @OA\Property(property="last_name", type="string"),
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="majors", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function store(Request $request)
     {
         try {
@@ -34,7 +59,22 @@ class TeacherController extends Controller
             return response()->json(['errors' => $exception->errors()], 422);
         }
     }
-
+    /**
+     * @OA\Get(
+     *     path="/api/teachers/{id}",
+     *     summary="Get a specific teacher",
+     *     tags={"Teachers"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Teacher ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Teacher not found")
+     * )
+     */
     public function show($id)
     {
         try {
@@ -45,7 +85,32 @@ class TeacherController extends Controller
             return response()->json(['error' => 'Öğretmen bulunamadı'], 404);
         }
     }
-
+    /**
+     * @OA\Put(
+     *     path="/api/teachers/{id}",
+     *     summary="Update a teacher",
+     *     tags={"Teachers"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Teacher ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="first_name", type="string"),
+     *             @OA\Property(property="last_name", type="string"),
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="majors", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Teacher not found"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -67,7 +132,22 @@ class TeacherController extends Controller
             return response()->json(['error' => 'Öğretmen bulunamadı'], 404);
         }
     }
-
+    /**
+     * @OA\Delete(
+     *     path="/api/teachers/{id}",
+     *     summary="Delete a teacher",
+     *     tags={"Teachers"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Teacher ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="No Content"),
+     *     @OA\Response(response="404", description="Teacher not found")
+     * )
+     */
     public function destroy($id)
     {
         try {

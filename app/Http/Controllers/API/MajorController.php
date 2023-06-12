@@ -10,12 +10,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 class MajorController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/majors",
+     *     summary="Get all majors",
+     *     tags={"Majors"},
+     *     @OA\Response(response="200", description="OK"),
+     * )
+     */
     public function index()
     {
         $majors = Major::all();
         return response()->json($majors);
     }
-
+    /**
+     * @OA\Post(
+     *     path="/api/majors",
+     *     summary="Create a new major",
+     *     tags={"Majors"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="status", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function store(Request $request)
     {
         try {
@@ -33,7 +56,22 @@ class MajorController extends Controller
             return response()->json(['errors' => $exception->errors()], 422);
         }
     }
-
+    /**
+     * @OA\Get(
+     *     path="/api/majors/{id}",
+     *     summary="Get a specific major",
+     *     tags={"Majors"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Major ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Major not found")
+     * )
+     */
     public function show($id)
     {
         try {
@@ -44,7 +82,30 @@ class MajorController extends Controller
             return response()->json(['error' => 'Major not found'], 404);
         }
     }
-
+    /**
+     * @OA\Put(
+     *     path="/api/majors/{id}",
+     *     summary="Update a major",
+     *     tags={"Majors"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Major ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="status", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Major not found"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -66,7 +127,22 @@ class MajorController extends Controller
             return response()->json(['error' => 'Major not found'], 404);
         }
     }
-
+    /**
+     * @OA\Delete(
+     *     path="/api/majors/{id}",
+     *     summary="Delete a major",
+     *     tags={"Majors"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Major ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="No content"),
+     *     @OA\Response(response="404", description="Major not found")
+     * )
+     */
     public function destroy($id)
     {
         try {

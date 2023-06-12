@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ClassroomController;
 use App\Http\Controllers\API\GradeController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\LessonSlotController;
+use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\MajorController;
 use App\Http\Controllers\API\TeacherController;
 use Illuminate\Http\Request;
@@ -38,16 +39,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('lesson-slots', LessonSlotController::class);
 });
 
-
-Route::post('/login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials)) {
-        $user = Auth::user();
-        $token = $user->createToken('api-token')->plainTextToken;
-
-        return response()->json(['token' => $token]);
-    } else {
-        return response()->json(['error' => 'Unauthorized'], 401);
-    }
-});
+Route::post('/login', [LoginController::class, 'login'])->name("api.login");
+Route::post('/documentation')->name("api.doc");

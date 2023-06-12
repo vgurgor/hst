@@ -72,6 +72,9 @@
                     <x-nav-link :href="route('timetablecreator.wizard')" :active="request()->routeIs('timetablecreator.wizard')">
                         {{ __('Çizelge Oluşturucu') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('api.doc')" :active="request()->routeIs('api.doc')" class="text-red-600">
+                        {{ __('API Portal') }}
+                    </x-nav-link>
                 </div>
             </div>
 

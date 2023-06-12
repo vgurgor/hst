@@ -1,0 +1,1443 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "HST API Documentation",
+        "description": "Application API services documentation page",
+        "contact": {
+            "email": "volkangurgor@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "operationId": "4596fcabf8d77d24d6f88eb1a61ec784",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Wrong email or password"
+                    }
+                }
+            }
+        },
+        "/api/campuses": {
+            "get": {
+                "tags": [
+                    "Campuses"
+                ],
+                "summary": "Get all campuses",
+                "operationId": "c23017978111f714dd601fd1268a7a5d",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Campuses"
+                ],
+                "summary": "Create a new campus",
+                "operationId": "ab65a35f48b694f649bfcc7c41f6b9ba",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Campus A"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Active"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/campuses/{id}": {
+            "get": {
+                "tags": [
+                    "Campuses"
+                ],
+                "summary": "Get a specific campus",
+                "operationId": "82b3fcb4e99a80c55f03f371f6aeef7a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Campus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Campus not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Campuses"
+                ],
+                "summary": "Update a campus",
+                "operationId": "0a0909ab64b3db580ee8f624269d73d5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Campus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated Campus A"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Inactive"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Campus not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Campuses"
+                ],
+                "summary": "Delete a campus",
+                "operationId": "ed33826927d31021b94cba168d702bd0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Campus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Campus not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branches": {
+            "get": {
+                "tags": [
+                    "Branches"
+                ],
+                "summary": "Get all branches",
+                "operationId": "47ae5f5d8dfc5541a89c6162a180ad51",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Branches"
+                ],
+                "summary": "Create a new branch",
+                "operationId": "4d35e38c04746630efabc9acbed7c538",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Branch A"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Type A"
+                                    },
+                                    "campus_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branches/{id}": {
+            "get": {
+                "tags": [
+                    "Branches"
+                ],
+                "summary": "Get a specific branch",
+                "operationId": "c84a98c56e97c7b78ef9cfaffd266ac1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Branch not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Branches"
+                ],
+                "summary": "Update a branch",
+                "operationId": "dcdb0ab40723f76e81ceedf8e326d3fc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated Branch A"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Updated Type A"
+                                    },
+                                    "campus_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Branch not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Branches"
+                ],
+                "summary": "Delete a branch",
+                "operationId": "37b47536a611d18a266f74fbb4505018",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Branch not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+
+        "/api/grades": {
+            "get": {
+                "tags": [
+                    "Grades"
+                ],
+                "summary": "Get all grades",
+                "operationId": "937082441649d3c80b32572bdcd1908b",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Grades"
+                ],
+                "summary": "Create a new grade",
+                "operationId": "09ba8a5b3973d399754f95ab9d83b9ab",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Grade A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/grades/{id}": {
+            "get": {
+                "tags": [
+                    "Grades"
+                ],
+                "summary": "Get a specific grade",
+                "operationId": "336255077855ed76091fbce88d6d11df",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Grade ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Grade not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Grades"
+                ],
+                "summary": "Update a grade",
+                "operationId": "945be0e2718fba53ecb91c12eca274c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Grade ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated Grade A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Grade not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Grades"
+                ],
+                "summary": "Delete a grade",
+                "operationId": "f3957d4c8e9fedc3599185c50b5fdc24",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Grade ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Grade not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+
+        "/api/majors": {
+            "get": {
+                "tags": [
+                    "Majors"
+                ],
+                "summary": "Get all majors",
+                "operationId": "a6fb87f871993e5c7f2dc4de65d1a2ac",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Majors"
+                ],
+                "summary": "Create a new major",
+                "operationId": "994bd62803e7276905c33d2a5fcc8f27",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/majors/{id}": {
+            "get": {
+                "tags": [
+                    "Majors"
+                ],
+                "summary": "Get a specific major",
+                "operationId": "665a720de4f28928fd275478d43995de",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Major ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Major not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Majors"
+                ],
+                "summary": "Update a major",
+                "operationId": "aaec71342c68e14604f6d46b5bc8621f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Major ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Major not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Majors"
+                ],
+                "summary": "Delete a major",
+                "operationId": "d9c302edf224d0fdaa701ac9268f8257",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Major ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Major not found"
+                    }
+                }
+            }
+        },
+        "/api/teachers": {
+            "get": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "Get all teachers",
+                "operationId": "24a0f742e0dce09dcf48f367d3b24295",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "Create a new teacher",
+                "operationId": "814d9c14a01fe7875bc7c8fe2a1fa70e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "majors": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/teachers/{id}": {
+            "get": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "Get a specific teacher",
+                "operationId": "536660906477ddbb95d1854c9eceeb51",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Teacher ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Teacher not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "Update a teacher",
+                "operationId": "2e65d9a5d98ae4d6f47ee82d709d12f2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Teacher ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "majors": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Teacher not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Teachers"
+                ],
+                "summary": "Delete a teacher",
+                "operationId": "34c7b4366727e061a05878d3895d3dd9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Teacher ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Teacher not found"
+                    }
+                }
+            }
+        },
+        "/api/classrooms": {
+            "get": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Get all classrooms",
+                "operationId": "75528f1f5b94129574dbaacf9379174a",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Create a new classroom",
+                "operationId": "0714923e4f44a505e6ddafe0f982fd3e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Classroom A"
+                                    },
+                                    "grade_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "branch_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Active"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/classrooms/{id}": {
+            "get": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Get a specific classroom",
+                "operationId": "fae72f312836772de6d8763a3f47f18c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Classroom ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Classroom not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Update a classroom",
+                "operationId": "f07fbeb285854acc3bc37f8a71c9447f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Classroom ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Updated Classroom A"
+                                    },
+                                    "grade_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "branch_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Active"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Classroom not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Delete a classroom",
+                "operationId": "256e9910bebaaf34599f5a8d8cd9293c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Classroom ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Classroom not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/lessons": {
+            "get": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Get all lessons",
+                "operationId": "56a24eaefa00bd5eae43dcca990ebce5",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Create a new lesson",
+                "operationId": "91ee3abe74a0ee73d7f749ac8614db20",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "major_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "grade_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Math"
+                                    },
+                                    "weekly_frequency": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/lessons/{id}": {
+            "get": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Get a specific lesson",
+                "operationId": "d1b5a0ba09df06d791f9dcf111ddc5f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Lesson not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Update a lesson",
+                "operationId": "234ebe880d4d58600e48b5c0ba6772ea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "major_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "grade_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Science"
+                                    },
+                                    "weekly_frequency": {
+                                        "type": "integer",
+                                        "example": "4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Lesson not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Lessons"
+                ],
+                "summary": "Delete a lesson",
+                "operationId": "56659845be71ccf6ef52a2bae0ab1cf9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Lesson not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/lesson-slots": {
+            "get": {
+                "tags": [
+                    "Lesson Slots"
+                ],
+                "summary": "Get all lesson slots",
+                "operationId": "964bb122819810b19664f9910c4306cf",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lesson Slots"
+                ],
+                "summary": "Create a new lesson slot",
+                "operationId": "ccf900a24482f3ce1fd77fd6fa22b7dd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "campus_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "day": {
+                                        "type": "string",
+                                        "example": "Monday"
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "example": "09:00"
+                                    },
+                                    "end_time": {
+                                        "type": "string",
+                                        "example": "10:30"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/lesson-slots/{id}": {
+            "get": {
+                "tags": [
+                    "Lesson Slots"
+                ],
+                "summary": "Get a specific lesson slot",
+                "operationId": "dc42997189f120cc0891b10427e2a3a0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Slot ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Lesson slot not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lesson Slots"
+                ],
+                "summary": "Update a lesson slot",
+                "operationId": "ece2e7f48735c033ebb833ce0316b400",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Slot ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "campus_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "day": {
+                                        "type": "string",
+                                        "example": "Tuesday"
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "example": "10:00"
+                                    },
+                                    "end_time": {
+                                        "type": "string",
+                                        "example": "11:30"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Lesson slot not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lesson Slots"
+                ],
+                "summary": "Delete a lesson slot",
+                "operationId": "8d5a437e4e9c09e7edc3f40bc0a181d5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Lesson Slot ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Lesson slot not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "name": "Authorization",
+                "description": "Bearer token to access these API endpoints",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

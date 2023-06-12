@@ -10,12 +10,37 @@ use Illuminate\Validation\ValidationException;
 
 class LessonSlotController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/lesson-slots",
+     *     summary="Get all lesson slots",
+     *     tags={"Lesson Slots"},
+     *     @OA\Response(response="200", description="OK"),
+     * )
+     */
     public function index()
     {
         $lessonSlots = LessonSlot::all();
         return response()->json($lessonSlots);
     }
-
+    /**
+     * @OA\Post(
+     *     path="/api/lesson-slots",
+     *     summary="Create a new lesson slot",
+     *     tags={"Lesson Slots"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="campus_id", type="integer", example="1"),
+     *             @OA\Property(property="day", type="string", example="Monday"),
+     *             @OA\Property(property="start_time", type="string", example="09:00"),
+     *             @OA\Property(property="end_time", type="string", example="10:30")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function store(Request $request)
     {
         try {
@@ -33,7 +58,22 @@ class LessonSlotController extends Controller
             return response()->json(['errors' => $exception->errors()], 422);
         }
     }
-
+    /**
+     * @OA\Get(
+     *     path="/api/lesson-slots/{id}",
+     *     summary="Get a specific lesson slot",
+     *     tags={"Lesson Slots"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Lesson Slot ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Lesson slot not found")
+     * )
+     */
     public function show($id)
     {
         try {
@@ -44,7 +84,32 @@ class LessonSlotController extends Controller
             return response()->json(['error' => 'Ders slotu bulunamadı'], 404);
         }
     }
-
+    /**
+     * @OA\Put(
+     *     path="/api/lesson-slots/{id}",
+     *     summary="Update a lesson slot",
+     *     tags={"Lesson Slots"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Lesson Slot ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="campus_id", type="integer", example="1"),
+     *             @OA\Property(property="day", type="string", example="Tuesday"),
+     *             @OA\Property(property="start_time", type="string", example="10:00"),
+     *             @OA\Property(property="end_time", type="string", example="11:30")
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="OK"),
+     *     @OA\Response(response="404", description="Lesson slot not found"),
+     *     @OA\Response(response="422", description="Validation error")
+     * )
+     */
     public function update(Request $request, $id)
     {
         try {
@@ -66,7 +131,22 @@ class LessonSlotController extends Controller
             return response()->json(['error' => 'Ders slotu bulunamadı'], 404);
         }
     }
-
+    /**
+     * @OA\Delete(
+     *     path="/api/lesson-slots/{id}",
+     *     summary="Delete a lesson slot",
+     *     tags={"Lesson Slots"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Lesson Slot ID",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="No content"),
+     *     @OA\Response(response="404", description="Lesson slot not found")
+     * )
+     */
     public function destroy($id)
     {
         try {
