@@ -149,5 +149,14 @@
     "Cumartesi": "Saturday",
     "Pazar": "Sunday",
     "Hatalı istek": "Bad request",
+    "Öncelikle gurobi optimizasyonu için gereken data setini indirin" : "First download the dataset required for gurobi optimization",
+    "Gurobi Optimizasyon Data Seti" : "Gurobi Optimization Data Set",
+    "Optimizasyon bitince oluşan output klasöründeki sonuç dosyasını yükleyin" : "Upload the result file in the output folder after the optimization is finished",
+    "Optimizasyon Sonuç Dosyası": "Optimization Result File",
+    "Sadece .json uzantılı dosyalar": "Only files with .json extension",
+    "Aşağıdaki python projesini bilgisayarına kurup, indirdiğiniz json dosyasını input klasörüne ekleyip, optimizasyonu çalıştırın": "Install the following python project on your computer, add the json file you downloaded to the input folder and run the optimization",
+    "HST Gurobi Optimizasyon Aracı": "HST Gurobi Optimization Tool",
+    "Çizelge oluşturudu": "Timetable created",
+    "Görüntüle": "View",
     "v": "v"
 }

@@ -23,10 +23,21 @@ $(document).ready(function() {
             $('button[data-to="2"]').prop('disabled', false);
         }
 
-        if(target == "2"){
-
+        if(target == "4"){
+            var file = $('#optimizationOutputFile').val();
+            var postData = {dosya: file};
+            $.ajax({
+                url: '/timetablecreator/uploadoutputfile',
+                type: 'POST',
+                data: postData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    data = jQuery.parseJSON(data);
+                    $("#wizardCompleted").html(data.data);
+                }
+            });
         }
-
     });
 
 
@@ -228,4 +239,84 @@ $(document).ready(function() {
             });
         }
     });
+
+    $("#teachers").on("change", function (event){
+        event.preventDefault();
+        $('button[data-to="3"]').prop('disabled', true);
+        if ($("#campus_id").val() != null && $("#campus_id").val() != ""
+            && $("#branch_id").val() != null && $("#branch_id").val() != ""
+            && $("#grade_id").val() != null && $("#grade_id").val() != ""
+            && $("#classrooms").val() != null && $("#classrooms").val() != ""
+            && $("#teachers").val() != null && $("#teachers").val() != ""){
+            $('button[data-to="3"]').prop('disabled', false);
+        }
+    });
+
+    $("#downloadOptimizationDataSet").on("click", function (event){
+        event.preventDefault();
+        $('button[data-to="4"]').prop('disabled', true);
+        if ($("#campus_id").val() != null && $("#campus_id").val() != ""
+            && $("#branch_id").val() != null && $("#branch_id").val() != ""
+            && $("#grade_id").val() != null && $("#grade_id").val() != ""
+            && $("#classrooms").val() != null && $("#classrooms").val() != ""
+            && $("#teachers").val() != null && $("#teachers").val() != ""){
+
+            Swal.fire({
+                title: waitText+"...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showCloseButton: false,
+                showCancelButton: false,
+                showConfirmButton: false,
+            });
+            var postData = {step: 3, campus_id: $("#campus_id").val(), branch_id: $("#branch_id").val(), grade_id: $("#grade_id").val(), classrooms: $("#classrooms").val(), teachers: $("#teachers").val()};
+            $("#error-box").parent().addClass("hidden");
+            $.ajax({
+                url: "/timetablecreator/ajaxdownloadoptimizationdataset",
+                type: "POST",
+                data: postData,
+                success: function (data) {
+                    swal.close();
+                    $('button[data-to="2"]').prop('disabled', false);
+                    data = jQuery.parseJSON(data);
+                    if(data.status == "error"){
+                        $("#error-box").parent().removeClass("hidden");
+                        $("#error-box").html(data.errors);
+                        $('button[data-to="2"]').prop('disabled', true);
+                    }else {
+                        // Convert the JSON response to a Blob object
+                        var blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+
+                        // Create a temporary anchor element
+                        var downloadLink = document.createElement('a');
+                        downloadLink.href = URL.createObjectURL(blob);
+                        downloadLink.download = 'optimization_input.json';
+
+                        // Trigger the download
+                        downloadLink.click();
+
+                        // Clean up the temporary anchor element
+                        URL.revokeObjectURL(downloadLink.href);
+                    }
+                }
+            });
+
+        }
+    });
+
+    $('#optimizationOutputFile').change(function() {
+        var file = this.files[0];
+        $('button[data-to="4"]').prop('disabled', true);
+        // Dosya JSON formatında mı kontrol et
+        if (file.type === 'application/json') {
+            $('button[data-to="4"]').prop('disabled', false);
+        } else {
+            Toast.fire({
+                icon: 'error',
+                title: notJson
+            })
+        }
+    });
+
+
 });

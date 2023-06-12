@@ -20,7 +20,7 @@ class LessonSlotController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'classroom_id' => 'required|exists:classrooms,id',
+                'campus_id' => 'required|exists:campuses,id',
                 'day' => 'required',
                 'start_time' => 'required',
                 'end_time' => 'required',
@@ -51,7 +51,7 @@ class LessonSlotController extends Controller
             $lessonSlot = LessonSlot::findOrFail($id);
 
             $validatedData = $request->validate([
-                'classroom_id' => 'required|exists:classrooms,id',
+                'campus_id' => 'required|exists:campuses,id',
                 'day' => 'required',
                 'start_time' => 'required',
                 'end_time' => 'required',

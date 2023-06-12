@@ -8,6 +8,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <script>
             var waitText = "{{__("Lütfen bekleyiniz")}}";
+            var notJson = "{{__("Yüklenen dosya json olmalıdır")}}";
         </script>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

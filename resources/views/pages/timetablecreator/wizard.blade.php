@@ -2,7 +2,7 @@
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100" style="height: 70vh">
+                <div class="p-6 text-gray-900 dark:text-gray-100" style="min-height: 70vh">
                     <div class="flex mb-8">
                         <!-- Step Bar -->
                         <div class="w-1/4">
@@ -102,7 +102,7 @@
                                 <button type="submit" data-to="1" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Önceki')}}</button>
                             </div>
                             <div class="mb-2 w-1/2 text-right">
-                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
+                                <button type="submit" data-to="3" disabled class="disabled:bg-red-300 nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
                             </div>
                         </div>
                     </section>
@@ -110,16 +110,20 @@
                     <section class="mb-8 hidden" id="step-3">
                         <div class="w-full mb-20">
                             <div class="p-3">
-                                <p class="pb-3 mb-4"><span class="p-3 bg-red-500 w-40 text-white">1-</span> {{__('Öncelikle gurobi optimasyonu için gereken data setini indirin')}}</p>
-                                <button class="bg-red-500 text-white mx-12 px-4 py-2 rounded-md hover:bg-red-700">{{__('Gurobi Optimiasyon Data Seti')}}</button>
+                                <p class="pb-3 mb-4"><span class="p-3 bg-red-500 w-40 text-white">1-</span> {{__('Öncelikle gurobi optimizasyonu için gereken data setini indirin')}}</p>
+                                <button id="downloadOptimizationDataSet" class="bg-red-500 text-white mx-12 px-4 py-2 rounded-md hover:bg-red-700">{{__('Gurobi Optimizasyon Data Seti')}}</button>
                             </div>
                             <div class="p-3 mt-4">
-                                <p><span class="p-3 bg-red-500 w-40 text-white">2-</span> {{__('Optimizasyon sonuç dosyasını yükleyin')}}</p>
+                                <p class="pb-3 mb-4"><span class="p-3 bg-red-500 w-40 text-white">2-</span> {{__('Aşağıdaki python projesini bilgisayarına kurup, indirdiğiniz json dosyasını input klasörüne ekleyip, optimizasyonu çalıştırın')}}</p>
+                                <a href="https://github.com/vgurgor/hst-optimization" target="_blank"><button class="bg-red-500 text-white mx-12 px-4 py-2 rounded-md hover:bg-red-700">{{__('HST Gurobi Optimizasyon Aracı')}}</button></a>
+                            </div>
+                            <div class="p-3 mt-4">
+                                <p><span class="p-3 bg-red-500 w-40 text-white">3-</span> {{__('Optimizasyon bitince oluşan output klasöründeki sonuç dosyasını yükleyin')}}</p>
                                 <div class="py-5 mx-12">
                                     <form action="">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">{{__('Optimizasyon Sonuç Dosyası')}}</label>
-                                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
-                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{__('Sadece .txt uzantılı dosyalar')}}</p>
+                                        <input id="optimizationOutputFile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{__('Sadece .json uzantılı dosyalar')}}</p>
                                     </form>
                                 </div>
                             </div>
@@ -130,8 +134,21 @@
                                 <button type="submit" data-to="2" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Önceki')}}</button>
                             </div>
                             <div class="mb-2 w-1/2 text-right">
-                                <button type="submit" data-to="3" class="nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
+                                <button type="submit" data-to="4" disabled class="disabled:bg-red-300 nextButton bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">{{__('Sonraki')}}</button>
                             </div>
+                        </div>
+                    </section>
+
+                    <section class="mb-8 hidden" id="step-4">
+                        <div class="w-full mb-20" id="wizardCompleted">
+
+                        </div>
+
+                        <div class="flex">
+                            <div class="mb-2 w-full text-center">
+                                <button type="submit" data-to="2" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Görüntüle')}}</button>
+                            </div>
+
                         </div>
                     </section>
                     <div class="hidden bg-yellow-300 px-3 py-2 border-2 border-yellow-500">

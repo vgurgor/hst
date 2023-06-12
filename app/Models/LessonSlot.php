@@ -10,7 +10,7 @@ class LessonSlot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'campus',
+        'campus_id',
         'day',
         'start_time',
         'end_time',

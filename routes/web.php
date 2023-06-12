@@ -107,6 +107,8 @@ Route::post('/timetablecreator/ajaxbranches', [TimetableCreatorController::class
 Route::post('/timetablecreator/ajaxgrades', [TimetableCreatorController::class, 'ajaxgrades'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxgrades');
 Route::post('/timetablecreator/ajaxclassrooms', [TimetableCreatorController::class, 'ajaxclassrooms'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxclassrooms');
 Route::post('/timetablecreator/ajaxcheckstep', [TimetableCreatorController::class, 'ajaxcheckstep'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxcheckstep');
+Route::post('/timetablecreator/ajaxdownloadoptimizationdataset', [TimetableCreatorController::class, 'ajaxdownloadoptimizationdataset'])->middleware(['auth', 'verified'])->name('timetablecreator.ajaxdownloadoptimizationdataset');
+Route::post('/timetablecreator/uploadoutputfile', [TimetableCreatorController::class, 'uploadoutputfile'])->middleware(['auth', 'verified'])->name('timetablecreator.uploadoutputfile');
 
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change/{lang}', [LangController::class, 'change'])->name('changeLang');
