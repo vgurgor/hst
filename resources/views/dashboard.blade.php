@@ -13,9 +13,10 @@
                     <div class="table w-full border-collapse border border-slate-500">
                         <div class="table-header-group font-bold ">
                             <div class="table-row">
-                                <div class="table-cell text-left border border-slate-600 p-2">Song</div>
-                                <div class="table-cell text-left border border-slate-600 p-2">Artist</div>
-                                <div class="table-cell text-left border border-slate-600 p-2">Year</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Kampüs Adı")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Sınıf Adı")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Oluşturma Tarihi")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2 text-center">{{__("Görüntüle")}}</div>
                             </div>
                         </div>
                         <div class="table-row-group">
@@ -23,16 +24,25 @@
                                 <div class="table-cell border border-slate-600 p-2">The Sliding Mr. Bones (Next Stop, Pottersville)</div>
                                 <div class="table-cell border border-slate-600 p-2">Malcolm Lockyer</div>
                                 <div class="table-cell border border-slate-600 p-2">1961</div>
+                                <div class="table-cell border border-slate-600 p-2 text-center">
+                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
+                                </div>
                             </div>
                             <div class="table-row">
                                 <div class="table-cell border border-slate-600 p-2">Witchy Woman</div>
                                 <div class="table-cell border border-slate-600 p-2">The Eagles</div>
                                 <div class="table-cell border border-slate-600 p-2">1972</div>
+                                <div class="table-cell border border-slate-600 p-2 text-center">
+                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
+                                </div>
                             </div>
                             <div class="table-row">
                                 <div class="table-cell border border-slate-600 p-2">Shining Star</div>
                                 <div class="table-cell border border-slate-600 p-2">Earth, Wind, and Fire</div>
                                 <div class="table-cell border border-slate-600 p-2">1975</div>
+                                <div class="table-cell border border-slate-600 p-2 text-center">
+                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
