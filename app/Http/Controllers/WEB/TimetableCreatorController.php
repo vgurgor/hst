@@ -461,8 +461,12 @@ class TimetableCreatorController extends Controller
     public function uploadoutputfile(Request $request){
 
         $user = Auth::user();
+        $content = $request->input('content');
 
-        dd($request->input('content'));
+        $json = json_decode($content);
+        $array = (array) $json;
+
+        dd($array[0]);
 
         $data = '<div class="w-full text-center"> <h1><span class="bi bi-check-circle-fill text-green-600" style="font-size:100px"></span></h1><br><h2 class="text-xl">'.__("Çizelge oluşturudu").'</h2> </div>';
         echo json_encode(array("status"=>"success", "data"=>$data));
