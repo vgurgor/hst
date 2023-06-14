@@ -85,6 +85,11 @@ class GradeController extends Controller
             return redirect()->back()->with('error', 'Düzey bulunamadı');
         }
     }
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
 
     public function update(Request $request, $id)
     {

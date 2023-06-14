@@ -187,6 +187,11 @@ class ClassroomController extends Controller
             return redirect()->back()->with('error', 'Sınıf bulunamadı');
         }
     }
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
 
     public function update(Request $request, $id)
     {

@@ -198,6 +198,11 @@ class TeacherController extends Controller
             return redirect()->back()->with('error', 'Öğretmen bulunamadı');
         }
     }
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
 
     public function update(Request $request, $id)
     {
