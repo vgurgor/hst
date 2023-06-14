@@ -341,7 +341,7 @@ $(document).ready(function() {
             $.ajax({
                 url: '/timetablecreator/uploadoutputfile',
                 type: 'POST',
-                data: {data: contents},
+                data: contents,
                 contentType: 'application/json',
                 success: function(response) {
                     // POST isteği başarılı olduğunda yapılacak işlemler
