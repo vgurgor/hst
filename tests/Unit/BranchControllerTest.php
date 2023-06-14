@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\API;
+namespace Tests\Unit;
 
 use App\Models\Branch;
 use App\Models\Campus;
