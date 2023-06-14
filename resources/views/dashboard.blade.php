@@ -20,7 +20,7 @@
                                 <div class="table-cell text-left border border-slate-600 p-2 text-center">{{__("Görüntüle")}}</div>
                             </div>
                         </div>
-                        @if($timetables->isEmpty())
+                        @if(empty($timetables))
                             <div class="table-row">
                                 <div class="table-cell border border-slate-600 p-2" colspan="5">
                                     <a href="{{ route('timetablecreator.wizard') }}" target="_blank">{{__('Çizelge Oluştur')}}</a>
