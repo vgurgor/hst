@@ -52,9 +52,9 @@ class LessonController extends Controller
             $lesson = Lesson::findOrFail($id);
             $lesson->status = 'deleted';
             $lesson->save();
-            return redirect()->route('lesson.list')->with('success', 'Ders silindi.');
+            return redirect()->route('lesson.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Ders bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -171,7 +171,7 @@ class LessonController extends Controller
 
             return view('/pages/lesson.edit',['lesson'=>$lesson, "majors"=>$majors, "grades"=>$grades]);
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Ders bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
     /**
@@ -199,9 +199,9 @@ class LessonController extends Controller
             $lesson->weekly_frequency   = $validatedData['weekly_frequency'];
             $lesson->status             = $validatedData['status'];
             $lesson->save();
-            return redirect()->back()->with('success', 'Ders başarıyla güncellendi');
+            return redirect()->back()->with('success', 'Bilgiler güncellendi');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Ders bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -238,7 +238,7 @@ class LessonController extends Controller
             $lesson->created_by         = $user->id;
             $lesson->save();
 
-            return redirect()->route('lesson.list')->with('success', 'Ders başarıyla eklendi.');
+            return redirect()->route('lesson.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
         }

@@ -58,9 +58,9 @@ class TeacherController extends Controller
             $teacher = Teacher::findOrFail($id);
             $teacher->status = 'deleted';
             $teacher->save();
-            return redirect()->route('teacher.list')->with('success', 'Öğretmen silindi.');
+            return redirect()->route('teacher.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Öğretmen bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -195,7 +195,7 @@ class TeacherController extends Controller
 
             return view('/pages/teacher.edit', ['teacher'=>$teacher,"branches"=>$branchesData, "majors"=>$majors]);
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Öğretmen bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
     /**
@@ -228,9 +228,9 @@ class TeacherController extends Controller
             $teacher->branches()->sync($validatedData['branch_ids']);
             $teacher->majors()->sync($validatedData['major_ids']);
 
-            return redirect()->back()->with('success', 'Öğretmen bilgileri başarıyla güncellendi');
+            return redirect()->back()->with('success', 'Bilgiler güncellendi');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Öğretmen bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -271,7 +271,7 @@ class TeacherController extends Controller
             $teacher->majors()->attach($validatedData['major_ids']);
 
 
-            return redirect()->route('teacher.list')->with('success', 'Öğretmen başarıyla oluşturuldu.');
+            return redirect()->route('teacher.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', __('Kaydetme sırasında hata oluştu'));
         }

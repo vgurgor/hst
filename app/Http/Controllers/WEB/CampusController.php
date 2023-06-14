@@ -30,9 +30,9 @@ class CampusController extends Controller
             $campus = Campus::findOrFail($id);
             $campus->status = 'deleted';
             $campus->save();
-            return redirect()->route('campus.list')->with('success', __('Kampüs silindi'));
+            return redirect()->route('campus.list')->with('success', __('Silme işlemi başarıyla gerçekleşti'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', __('Kampüs bulunamadı'));
+            return redirect()->back()->with('error', __('Veri bulunamadı'));
         }
     }
 
@@ -75,7 +75,7 @@ class CampusController extends Controller
             $campus = Campus::findOrFail($id);
             return view('/pages/campus.edit',compact('campus'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', __('Kampüs bulunamadı'));
+            return redirect()->back()->with('error', __('Veri bulunamadı'));
         }
     }
 
@@ -98,9 +98,9 @@ class CampusController extends Controller
             $campus->name = $validatedData['name'];
             $campus->status = $validatedData['status'];
             $campus->save();
-            return redirect()->back()->with('success', __('Kampüs başarıyla güncellendi'));
+            return redirect()->back()->with('success', __('Bilgiler güncellendi'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', __('Kampüs bulunamadı'));
+            return redirect()->back()->with('error', __('Veri bulunamadı'));
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -132,7 +132,7 @@ class CampusController extends Controller
             $campus->save();
 
 
-            return redirect()->route('campus.list')->with('success', __('Kampüs başarıyla eklendi'));
+            return redirect()->route('campus.list')->with('success', __('Ekleme işlemi başarılı'));
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', __('Kaydetme sırasında hata oluştu'));
         }

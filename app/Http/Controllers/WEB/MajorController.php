@@ -30,9 +30,9 @@ class MajorController extends Controller
             $major = Major::findOrFail($id);
             $major->status = 'deleted';
             $major->save();
-            return redirect()->route('major.list')->with('success', 'Branş silindi.');
+            return redirect()->route('major.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Branş bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -75,7 +75,7 @@ class MajorController extends Controller
             $major = Major::findOrFail($id);
             return view('/pages/major.edit',compact('major'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Branş bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
     /**
@@ -97,9 +97,9 @@ class MajorController extends Controller
             $major->name = $validatedData['name'];
             $major->status = $validatedData['status'];
             $major->save();
-            return redirect()->back()->with('success', 'Branş başarıyla güncellendi');
+            return redirect()->back()->with('success', 'Bilgiler güncellendi');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Branş bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -131,7 +131,7 @@ class MajorController extends Controller
             $major->save();
 
 
-            return redirect()->route('major.list')->with('success', 'Branş başarıyla eklendi.');
+            return redirect()->route('major.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
         }

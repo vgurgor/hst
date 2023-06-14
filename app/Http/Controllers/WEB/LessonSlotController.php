@@ -52,9 +52,9 @@ class LessonSlotController extends Controller
             $lessonSlot = LessonSlot::findOrFail($id);
             $lessonSlot->status = 'deleted';
             $lessonSlot->save();
-            return redirect()->route('lesson-slot.list')->with('success', 'Ders Slotu silindi.');
+            return redirect()->route('lesson-slot.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Ders Slotu bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -166,7 +166,7 @@ class LessonSlotController extends Controller
             $lessonSlot->save();
 
 
-            return redirect()->route('lesson-slot.list')->with('success', 'Ders Slotu başarıyla eklendi.');
+            return redirect()->route('lesson-slot.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
         }

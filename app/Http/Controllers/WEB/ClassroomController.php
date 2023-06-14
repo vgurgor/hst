@@ -59,9 +59,9 @@ class ClassroomController extends Controller
             $classroom = Classroom::findOrFail($id);
             $classroom->status = 'deleted';
             $classroom->save();
-            return redirect()->route('classroom.list')->with('success', 'Düzey silindi.');
+            return redirect()->route('classroom.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Sınıf bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -184,7 +184,7 @@ class ClassroomController extends Controller
             return view('/pages/classroom.edit', ["classroom"=>$classroom,"branches" => $branchesData,"grades"=>$grades]);
 
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Sınıf bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
     /**
@@ -210,9 +210,9 @@ class ClassroomController extends Controller
             $classroom->grade_id    = $validatedData['grade_id'];
             $classroom->status      = $validatedData['status'];
             $classroom->save();
-            return redirect()->back()->with('success', 'Sınıf başarıyla güncellendi');
+            return redirect()->back()->with('success', 'Bilgiler güncellendi');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Sınıf bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -249,7 +249,7 @@ class ClassroomController extends Controller
             $classroom->save();
 
 
-            return redirect()->route('classroom.list')->with('success', 'Sınıf başarıyla eklendi.');
+            return redirect()->route('classroom.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
         }

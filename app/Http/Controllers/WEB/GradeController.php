@@ -34,9 +34,9 @@ class GradeController extends Controller
             $branch = Grade::findOrFail($id);
             $branch->status = 'deleted';
             $branch->save();
-            return redirect()->route('grade.list')->with('success', 'Düzey silindi.');
+            return redirect()->route('grade.list')->with('success', 'Silme işlemi başarıyla gerçekleşti');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Düzey bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
 
@@ -82,7 +82,7 @@ class GradeController extends Controller
             return view('/pages/grade.edit', ["grade"=>$grade]);
 
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Düzey bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
     }
     /**
@@ -105,9 +105,9 @@ class GradeController extends Controller
             $grade->name = $validatedData['name'];
             $grade->status = $validatedData['status'];
             $grade->save();
-            return redirect()->back()->with('success', 'Düzey başarıyla güncellendi');
+            return redirect()->back()->with('success', 'Bilgiler güncellendi');
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Düzey bulunamadı');
+            return redirect()->back()->with('error', 'Veri bulunamadı');
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
@@ -139,7 +139,7 @@ class GradeController extends Controller
             $grade->save();
 
 
-            return redirect()->route('grade.list')->with('success', 'Düzey başarıyla eklendi.');
+            return redirect()->route('grade.list')->with('success', 'Ekleme işlemi başarılı');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
         }
