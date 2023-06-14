@@ -195,14 +195,14 @@ class ClassroomController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'branch_id' => 'required',
-            'grade_id' => 'required',
-            'name' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'branch_id' => 'required',
+                'grade_id' => 'required',
+                'name' => 'required',
+                'status' => 'required'
+            ]);
+
             $classroom          = Classroom::findOrFail($id);
 
             $classroom->name        = $validatedData['name'];

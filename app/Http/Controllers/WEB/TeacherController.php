@@ -206,16 +206,17 @@ class TeacherController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-        $validatedData = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'major_ids' => 'required|array',
-            'branch_ids' => 'required|array',
-            'status' => 'required'
-        ]);
 
         try {
+            $user = Auth::user();
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'major_ids' => 'required|array',
+                'branch_ids' => 'required|array',
+                'status' => 'required'
+            ]);
+
             $teacher = Teacher::findOrFail($id);
 
             $teacher->first_name  = $validatedData['first_name'];

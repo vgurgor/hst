@@ -93,12 +93,13 @@ class GradeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'status' => 'required'
+            ]);
+
+
             $grade = Grade::findOrFail($id);
 
             $grade->name = $validatedData['name'];

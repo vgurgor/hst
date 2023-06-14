@@ -84,20 +84,15 @@ class CampusController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'status' => 'required'
+            ]);
+
             $campus = Campus::findOrFail($id);
 
             $campus->name = $validatedData['name'];

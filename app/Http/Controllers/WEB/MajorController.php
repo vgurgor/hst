@@ -86,12 +86,12 @@ class MajorController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'status' => 'required'
+            ]);
+
             $major = Major::findOrFail($id);
 
             $major->name = $validatedData['name'];

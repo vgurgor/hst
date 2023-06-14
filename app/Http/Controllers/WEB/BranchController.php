@@ -143,12 +143,12 @@ class BranchController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'status' => 'required'
+            ]);
+
             $branch = Branch::findOrFail($id);
 
             $branch->name = $validatedData['name'];

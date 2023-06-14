@@ -182,15 +182,15 @@ class LessonController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'major_id' => 'required',
-            'grade_id' => 'required',
-            'name' => 'required',
-            'weekly_frequency' => 'required',
-            'status' => 'required'
-        ]);
-
         try {
+            $validatedData = $request->validate([
+                'major_id' => 'required',
+                'grade_id' => 'required',
+                'name' => 'required',
+                'weekly_frequency' => 'required',
+                'status' => 'required'
+            ]);
+
             $lesson = Lesson::findOrFail($id);
 
             $lesson->major_id           = $validatedData['major_id'];
