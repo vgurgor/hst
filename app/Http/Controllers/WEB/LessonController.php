@@ -201,7 +201,7 @@ class LessonController extends Controller
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', 'Hatalı istek');
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
         }
     }
 
@@ -240,7 +240,7 @@ class LessonController extends Controller
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', 'Zorunlu alanları doldurunuz');
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', 'Hatalı istek: '.$exception->getMessage());
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
         }
     }
 }

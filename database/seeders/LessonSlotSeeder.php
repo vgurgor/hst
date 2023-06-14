@@ -9,10 +9,10 @@ class LessonSlotSeeder extends Seeder
 {
     public function run()
     {
-        $campusId = 1;
-        $createdBy = 1;
-        $startTimes = ['08:30', '09:20', '10:10', '11:00', '11:50','13:30', '14:20', '15:10'];
-        $endTimes = ['09:10', '10:00', '10:50', '11:40', '12:30','14:10', '15:00', '15:50'];
+        $campusId = 34;
+        $createdBy = 57;
+        $startTimes = ['08:30', '09:20', '10:10', '11:00', '11:50'];
+        $endTimes = ['09:10', '10:00', '10:50', '11:40', '12:30'];
 
         for ($day = 1; $day <= 5; $day++) {
             for ($course = 1; $course <= count($startTimes); $course++) {

@@ -99,7 +99,7 @@ class CampusController extends Controller
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', __('Hatalı istek'));
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
         }
     }
 

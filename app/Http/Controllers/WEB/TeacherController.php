@@ -243,7 +243,7 @@ class TeacherController extends Controller
     {
         $user = Auth::user();
 
-
+        try {
             $validatedData = $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -266,6 +266,13 @@ class TeacherController extends Controller
 
 
             return redirect()->route('teacher.list')->with('success', 'Öğretmen başarıyla oluşturuldu.');
-
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->back()->with('error', __('Kaydetme sırasında hata oluştu'));
+        }
+        catch (ValidationException $exception) {
+            return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
+        }
     }
 }
