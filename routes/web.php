@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/campus', [CampusController::class, 'index'])->middleware(['auth', 'verified'])->name('campus.list');
 Route::put('/campus/delete/{id}', [CampusController::class, 'delete'])->middleware(['auth', 'verified'])->name('campus.delete');
-Route::get('/campuses/edit/{id}', [CampusController::class, 'edit'])->middleware(['auth', 'verified'])->name('campus.edit');
+Route::get('/campus/edit/{id}', [CampusController::class, 'edit'])->middleware(['auth', 'verified'])->name('campus.edit');
 Route::put('/campus/{id}', [CampusController::class, 'update'])->middleware(['auth', 'verified'])->name('campus.update');
 Route::post('/campus/filter', [CampusController::class, 'filter'])->middleware(['auth', 'verified'])->name('campus.filter');
 Route::get('/campus/add', [CampusController::class, 'add'])->middleware(['auth', 'verified'])->name('campus.add');
