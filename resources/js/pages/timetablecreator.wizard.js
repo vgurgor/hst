@@ -24,31 +24,7 @@ $(document).ready(function() {
         }
 
         if(target == "4"){
-            var fileInput = document.getElementById('optimizationOutputFile');
-            if (fileInput.files.length === 0) {
-                Toast.fire({
-                    icon: 'error',
-                    title: notJson
-                })
-            }
-            var file = fileInput.files[0];
-            var fileRead = new FileReader();
-            dosyaOkuyucu.onload = function(event) {
-                var json_data = event.target.result;
-                var postData = {data: json_data};
-                $.ajax({
-                    url: '/timetablecreator/uploadoutputfile',
-                    type: 'POST',
-                    data: postData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        data = jQuery.parseJSON(data);
-                        $("#wizardCompleted").html(data.data);
-                    }
-                });
-            }
-            fileRead.readAsText(file);
+
         }
     });
 
@@ -341,7 +317,7 @@ $(document).ready(function() {
             $.ajax({
                 url: '/timetablecreator/uploadoutputfile',
                 type: 'POST',
-                data: contents,
+                data: {"content": contents},
                 contentType: 'application/json',
                 success: function(response) {
                     // POST isteği başarılı olduğunda yapılacak işlemler
