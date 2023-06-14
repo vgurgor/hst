@@ -436,7 +436,7 @@ class TimetableCreatorController extends Controller
                 foreach ($teacher->majors->pluck('id') as $tMajor){
                     $jsonData["teachers"][] = array(
                         "major"     => $tMajor,
-                        "teacher"   => $teacher->id
+                        "teacher_id"   => $teacher->id
                     );
                 }
             }
