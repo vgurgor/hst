@@ -20,6 +20,13 @@
                                 <div class="table-cell text-left border border-slate-600 p-2 text-center">{{__("Görüntüle")}}</div>
                             </div>
                         </div>
+                        @if($timetables->isEmpty())
+                            <div class="table-row">
+                                <div class="table-cell border border-slate-600 p-2" colspan="5">
+                                    <a href="{{ route('timetablecreator.wizard') }}" target="_blank">{{__('Çizelge Oluştur')}}</a>
+                                </div>
+                            </div>
+                        @else
                         <div class="table-row-group">
                             @foreach ($timetables as $timetable)
                             <div class="table-row">
@@ -33,6 +40,7 @@
                             </div>
                             @endforeach
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
