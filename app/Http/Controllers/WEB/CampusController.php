@@ -7,7 +7,7 @@ use App\Models\Campus;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 class CampusController extends Controller
 {
@@ -95,6 +95,9 @@ class CampusController extends Controller
             return redirect()->back()->with('success', __('Kampüs başarıyla güncellendi'));
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', __('Kampüs bulunamadı'));
+        }
+        catch (ValidationException $exception) {
+            return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
             return redirect()->back()->with('error', __('Hatalı istek'));
         }
@@ -130,7 +133,7 @@ class CampusController extends Controller
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', __('Hatalı istek'));
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
         }
     }
 }

@@ -9,7 +9,7 @@ use App\Models\Major;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 class LessonController extends Controller
 {
@@ -197,6 +197,9 @@ class LessonController extends Controller
             return redirect()->back()->with('success', 'Ders başarıyla güncellendi');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Ders bulunamadı');
+        }
+        catch (ValidationException $exception) {
+            return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
             return redirect()->back()->with('error', 'Hatalı istek');
         }

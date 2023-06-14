@@ -8,7 +8,7 @@ use App\Models\LessonSlot;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 class LessonSlotController extends Controller
 {

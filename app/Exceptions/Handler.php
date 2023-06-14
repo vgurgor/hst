@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use App\Exceptions\API\ApiExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -35,34 +36,12 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-
         if (env("APP_DEBUG")) {
             return parent::render($request, $e);
         }
-
-        if ($e instanceof ValidationException) {
-            return response()->json([
-                'error' => [
-                    'message' => "Bad Request",
-                    'status_code' => 400
-                ]
-            ], 400);
-        } else if ($e instanceof NotFoundHttpException) {
-            return response()->json([
-                'error' => [
-                    'message' => "Not Found",
-                    'status_code' => 404
-                ]
-            ], 404);
+        if ($request->is('api/*')) {
+            return app(ApiExceptionHandler::class)->render($request, $e);
         }
-
-        return response()->json([
-            'error' => [
-                'message' => "Internal Server Error",
-                'status_code' => 500,
-                'error' => $e->getMessage()
-            ]
-        ], 500);
 
     }
 

@@ -14,7 +14,7 @@ use App\Models\Teacher;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
+use Illuminate\Validation\ValidationException;
 use function Pest\Laravel\json;
 
 class TimetableCreatorController extends Controller

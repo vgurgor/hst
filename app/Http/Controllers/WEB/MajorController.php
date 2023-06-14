@@ -7,7 +7,7 @@ use App\Models\Major;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 class MajorController extends Controller
 {
@@ -95,6 +95,9 @@ class MajorController extends Controller
             return redirect()->back()->with('success', 'Branş başarıyla güncellendi');
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with('error', 'Branş bulunamadı');
+        }
+        catch (ValidationException $exception) {
+            return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
             return redirect()->back()->with('error', 'Hatalı istek');
         }
