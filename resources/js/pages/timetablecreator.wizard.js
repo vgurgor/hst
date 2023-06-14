@@ -318,7 +318,6 @@ $(document).ready(function() {
                 url: '/timetablecreator/uploadoutputfile',
                 type: 'POST',
                 data: {"content": contents},
-                contentType: 'application/json',
                 success: function(response) {
                     // POST isteği başarılı olduğunda yapılacak işlemler
                     console.log('Dosya başarıyla yüklendi ve işlendi.');
