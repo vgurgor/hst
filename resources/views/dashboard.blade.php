@@ -22,7 +22,7 @@
                         </div>
                         @if(empty($timetables))
                             <div class="table-row">
-                                <div olSpan={6}  class="table-cell border border-slate-600 p-2" colspan="5">
+                                <div colSpan={6}  class="table-cell border border-slate-600 p-2" colspan="5">
                                     <a href="{{ route('timetablecreator.wizard') }}" target="_blank">{{__('Çizelge Oluştur')}}</a>
                                 </div>
                             </div>
