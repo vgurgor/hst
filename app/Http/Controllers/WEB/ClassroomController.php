@@ -217,7 +217,7 @@ class ClassroomController extends Controller
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', __('Zorunlu alanları doldurunuz'));
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek"));
+            return redirect()->back()->with('error', __(($exception->getMessage() ? $exception->getMessage() : 'Hatalı istek')));
         }
     }
 
@@ -249,14 +249,14 @@ class ClassroomController extends Controller
             $classroom->save();
 
 
-            return redirect()->route('classroom.list')->with('success', 'Ekleme işlemi başarılı');
+            return redirect()->route('classroom.list')->with('success', __('Ekleme işlemi başarılı'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
+            return redirect()->back()->with('error', __('Kaydetme sırasında hata oluştu'));
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', 'Zorunlu alanları doldurunuz');
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek"));
+            return redirect()->back()->with('error', __(($exception->getMessage() ? $exception->getMessage() : 'Hatalı istek')));
         }
     }
 }

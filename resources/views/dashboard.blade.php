@@ -9,41 +9,29 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 style="font-weight: bold;font-size:32px" class="mb-4 text-red-600">{{__("Çizelgeler")}}</h1>
+                    <h1 style="font-weight: bold;font-size:32px" class="mb-4 text-red-600">{{__("Çizelgesi Oluşturulmuş Sınıflar")}}</h1>
                     <div class="table w-full border-collapse border border-slate-500">
                         <div class="table-header-group font-bold ">
                             <div class="table-row">
-                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Kampüs Adı")}}</div>
-                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Sınıf Adı")}}</div>
-                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Oluşturma Tarihi")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Kampüs")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Şube")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Düzey")}}</div>
+                                <div class="table-cell text-left border border-slate-600 p-2">{{__("Sınıf")}}</div>
                                 <div class="table-cell text-left border border-slate-600 p-2 text-center">{{__("Görüntüle")}}</div>
                             </div>
                         </div>
                         <div class="table-row-group">
+                            @foreach ($timetables as $timetable)
                             <div class="table-row">
-                                <div class="table-cell border border-slate-600 p-2">The Sliding Mr. Bones (Next Stop, Pottersville)</div>
-                                <div class="table-cell border border-slate-600 p-2">Malcolm Lockyer</div>
-                                <div class="table-cell border border-slate-600 p-2">1961</div>
+                                <div class="table-cell border border-slate-600 p-2">{{$timetable["campus_name"]}}</div>
+                                <div class="table-cell border border-slate-600 p-2">{{$timetable["branch_name"]}}</div>
+                                <div class="table-cell border border-slate-600 p-2">{{$timetable["grade_name"]}}</div>
+                                <div class="table-cell border border-slate-600 p-2">{{$timetable["classroom_name"]}}</div>
                                 <div class="table-cell border border-slate-600 p-2 text-center">
-                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
+                                    <a href="{{ route('timetable.class', $timetable["classroom_id"] ) }}" target="_blank"><span class="bi bi-eye-fill"></span></a>
                                 </div>
                             </div>
-                            <div class="table-row">
-                                <div class="table-cell border border-slate-600 p-2">Witchy Woman</div>
-                                <div class="table-cell border border-slate-600 p-2">The Eagles</div>
-                                <div class="table-cell border border-slate-600 p-2">1972</div>
-                                <div class="table-cell border border-slate-600 p-2 text-center">
-                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
-                                </div>
-                            </div>
-                            <div class="table-row">
-                                <div class="table-cell border border-slate-600 p-2">Shining Star</div>
-                                <div class="table-cell border border-slate-600 p-2">Earth, Wind, and Fire</div>
-                                <div class="table-cell border border-slate-600 p-2">1975</div>
-                                <div class="table-cell border border-slate-600 p-2 text-center">
-                                    <a href="#"><span class="bi bi-eye-fill"></span></a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

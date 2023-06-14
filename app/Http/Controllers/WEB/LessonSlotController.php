@@ -166,14 +166,14 @@ class LessonSlotController extends Controller
             $lessonSlot->save();
 
 
-            return redirect()->route('lesson-slot.list')->with('success', 'Ekleme işlemi başarılı');
+            return redirect()->route('lesson-slot.list')->with('success', __('Ekleme işlemi başarılı'));
         } catch (ModelNotFoundException $exception) {
-            return redirect()->back()->with('error', 'Kaydetme sırasında hata oluştu');
+            return redirect()->back()->with('error', __('Kaydetme sırasında hata oluştu'));
         }
         catch (ValidationException $exception) {
             return redirect()->back()->with('error', 'Zorunlu alanları doldurunuz');
         }catch (\Exception $exception){
-            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : "Hatalı istek")));
+            return redirect()->back()->with('error', __( ($exception->getMessage() ? $exception->getMessage() : 'Hatalı istek')));
         }
     }
 }

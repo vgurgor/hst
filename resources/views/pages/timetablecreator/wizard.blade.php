@@ -146,7 +146,7 @@
 
                         <div class="flex">
                             <div class="mb-2 w-full text-center">
-                                <button type="submit" data-to="2" class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Görüntüle')}}</button>
+                                <a href="{{ route('dashboard') }}"><button class="nextButton bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">{{__('Bitir')}}</button></a>
                             </div>
 
                         </div>

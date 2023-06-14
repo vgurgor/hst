@@ -6,6 +6,7 @@ use App\Http\Controllers\WEB\CampusController;
 use App\Http\Controllers\WEB\BranchController;
 use App\Http\Controllers\WEB\ClassroomController;
 use App\Http\Controllers\WEB\GradeController;
+use App\Http\Controllers\WEB\IndexController;
 use App\Http\Controllers\WEB\LessonController;
 use App\Http\Controllers\WEB\LessonSlotController;
 use App\Http\Controllers\WEB\MajorController;
@@ -28,9 +29,8 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [IndexController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/timetables/class/{id}', [IndexController::class, 'classtimetable'])->middleware(['auth', 'verified'])->name('timetable.class');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

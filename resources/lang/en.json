@@ -158,12 +158,16 @@
     "HST Gurobi Optimizasyon Aracı": "HST Gurobi Optimization Tool",
     "Çizelge oluşturudu": "Timetable created",
     "Görüntüle": "View",
+    "Bitir": "Finish",
     "Çizelgeler": "Timetables",
     "Oluşturma Tarihi": "Created At",
-    "Görüntüle": "See",
+    "Görüntüle": "View",
     "Ekleme işlemi başarılı": "Added is successfull",
     "Silme işlemi başarıyla gerçekleşti": "Deleted is successfull",
     "Veri bulunamadı": "Data not found",
     "Bilgiler güncellendi": "Data is updated",
+    "Çıktı dosyası geçersiz": "Output file is invalid",
+    "Çizelgesi Oluşturulmuş Sınıflar": "Scheduled Classes",
+    "Çizelgesi Oluşturulmuş Öğretmenler": "Scheduled Teachers",
     "v": "v"
 }

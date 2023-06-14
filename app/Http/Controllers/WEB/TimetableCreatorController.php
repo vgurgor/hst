@@ -11,6 +11,7 @@ use App\Models\Lesson;
 use App\Models\LessonSlot;
 use App\Models\Major;
 use App\Models\Teacher;
+use App\Models\Timetable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -152,7 +153,7 @@ class TimetableCreatorController extends Controller
         $classrooms = $request->input('classrooms');
 
         if (!isset($step) || $step == null) {
-            echo json_encode(array("status"=>"warning", "msg"=>"Hatalı istek"));
+            echo json_encode(array("status"=>"warning", "msg"=>'Hatalı istek'));
             exit();
         }
 
@@ -281,7 +282,7 @@ class TimetableCreatorController extends Controller
         $teachers   = $request->input('teachers');
 
         if (!isset($step) || $step == null) {
-            echo json_encode(array("status"=>"warning", "msg"=>"Hatalı istek"));
+            echo json_encode(array("status"=>"warning", "msg"=>'Hatalı istek'));
             exit();
         }
 
@@ -462,14 +463,58 @@ class TimetableCreatorController extends Controller
 
         $user = Auth::user();
         $content = $request->input('content');
+        $campus_id = $request->input('campus_id');
 
         $json = json_decode($content);
         $array = (array) $json;
+        try {
+            $lessonSlots = LessonSlot::where("campus_id",$campus_id)
+                ->where("status","active")
+                ->where('created_by', $user->id)
+                ->orderBy('campus_id')
+                ->orderBy('day')
+                ->orderBy('start_time')
+                ->get();
 
-        dd($array[0]->classroom_id);
+            $slotPeriods = array();
 
-        $data = '<div class="w-full text-center"> <h1><span class="bi bi-check-circle-fill text-green-600" style="font-size:100px"></span></h1><br><h2 class="text-xl">'.__("Çizelge oluşturudu").'</h2> </div>';
-        echo json_encode(array("status"=>"success", "data"=>$data));
+            foreach ($lessonSlots as $lessonSlot){
+                $preSlotPeriods[$lessonSlot->day][] = $lessonSlot->id;
+            }
+
+            foreach ($array as $value){
+                $timetables = Timetable::where('classroom_id', $value->classroom_id)
+                    ->where('lesson_slot_id', $preSlotPeriods[$value->day][($value->period)-1])
+                    ->get();
+
+                foreach ($timetables as $timetable) {
+                    if ($timetable->exists()) {
+                        $timetable->status = 'inactive';
+                        $timetable->save();
+                    }
+                }
+
+                $timetable = new Timetable;
+                $timetable->lesson_slot_id  = $preSlotPeriods[$value->day][($value->period)-1];
+                $timetable->classroom_id    = $value->classroom_id;
+                $timetable->teacher_id      = $value->teacher_id;
+                $timetable->lesson_id       = $value->course_id;
+                $timetable->created_by      = $user->id;
+                $timetable->save();
+            }
+
+            $data = '<div class="w-full text-center"> <h1><span class="bi bi-check-circle-fill text-green-600" style="font-size:100px"></span></h1><br><h2 class="text-xl">'.__("Çizelge oluşturudu").'</h2> </div>';
+            echo json_encode(array("status"=>"success", "data"=>$data));
+
+        } catch (ModelNotFoundException $exception) {
+            echo json_encode(array("status"=>"error", "msg"=>__('Kaydetme sırasında hata oluştu')));
+        }
+        catch (ValidationException $exception) {
+            echo json_encode(array("status"=>"error", "msg"=>__('Zorunlu alanları doldurunuz')));
+        }catch (\Exception $exception){
+            echo json_encode(array("status"=>"error", "msg"=>__(($exception->getMessage() ? $exception->getMessage() : 'Hatalı istek'))));
+        }
+
         exit();
     }
 

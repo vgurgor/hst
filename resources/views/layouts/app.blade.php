@@ -9,6 +9,7 @@
         <script>
             var waitText = "{{__("Lütfen bekleyiniz")}}";
             var notJson = "{{__("Yüklenen dosya json olmalıdır")}}";
+            var notTrueOutput = "{{__("Çıktı dosyası geçersiz")}}";
         </script>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

@@ -24,7 +24,81 @@ $(document).ready(function() {
         }
 
         if(target == "4"){
+            var file = document.getElementById('optimizationOutputFile').files[0];
+            var reader = new FileReader();
 
+            reader.onload = function(e) {
+                var contents = reader.result;
+                Swal.fire({
+                    title: waitText+"...",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                });
+                $.ajax({
+                    url: '/timetablecreator/uploadoutputfile',
+                    type: 'POST',
+                    data: {"content": contents,campus_id: $("#campus_id").val(),},
+                    success: function(data) {
+                        swal.close();
+                        data = jQuery.parseJSON(data);
+                        if(data.status == "error"){
+                            $('#stepper-3').removeClass("bg-gray-300");
+                            $('#stepper-3').addClass("bg-red-500");
+
+                            $('#stepper-4').removeClass("bg-red--500");
+                            $('#stepper-4').addClass("bg-gray-300");
+
+                            $('#step-4').addClass("hidden");
+                            $('#step-3').removeClass("hidden");
+
+                            $('button[data-to="4"]').prop('disabled', true);
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: data.msg,
+                                allowOutsideClick: true,
+                                allowEscapeKey: true,
+                                showCloseButton: false,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }else {
+                            $("#wizardCompleted").html(data.data);
+                        }
+                        console.log('Dosya başarıyla yüklendi ve işlendi.');
+                    },
+                    error: function(xhr, status, error) {
+                        swal.close();
+                        $('#stepper-3').removeClass("bg-gray-300");
+                        $('#stepper-3').addClass("bg-red-500");
+
+                        $('#stepper-4').removeClass("bg-red--500");
+                        $('#stepper-4').addClass("bg-gray-300");
+
+                        $('#step-4').addClass("hidden");
+                        $('#step-3').removeClass("hidden");
+
+                        $('button[data-to="4"]').prop('disabled', true);
+                        Swal.fire({
+                            icon: 'error',
+                            title: notTrueOutput,
+                            allowOutsideClick: true,
+                            allowEscapeKey: true,
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        console.error('Dosya yükleme işlemi başarısız: ' + error);
+                    }
+                });
+            };
+
+            reader.readAsText(file);
         }
     });
 
@@ -305,32 +379,5 @@ $(document).ready(function() {
             })
         }
     });
-
-    $('#optimizationOutputFile').on('change', function(e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            var contents = e.target.result;
-
-            // JSON dosyasının içeriğini aldık, şimdi POST isteği yapabiliriz
-            $.ajax({
-                url: '/timetablecreator/uploadoutputfile',
-                type: 'POST',
-                data: {"content": contents},
-                success: function(response) {
-                    // POST isteği başarılı olduğunda yapılacak işlemler
-                    console.log('Dosya başarıyla yüklendi ve işlendi.');
-                },
-                error: function(xhr, status, error) {
-                    // POST isteği sırasında hata oluştuğunda yapılacak işlemler
-                    console.error('Dosya yükleme işlemi başarısız: ' + error);
-                }
-            });
-        };
-
-        reader.readAsText(file);
-    });
-
 
 });
