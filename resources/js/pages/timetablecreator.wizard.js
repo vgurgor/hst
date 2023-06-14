@@ -330,5 +330,32 @@ $(document).ready(function() {
         }
     });
 
+    $('#optimizationOutputFile').on('change', function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var contents = e.target.result;
+
+            // JSON dosyasının içeriğini aldık, şimdi POST isteği yapabiliriz
+            $.ajax({
+                url: '/timetablecreator/uploadoutputfile',
+                type: 'POST',
+                data: contents,
+                contentType: 'application/json',
+                success: function(response) {
+                    // POST isteği başarılı olduğunda yapılacak işlemler
+                    console.log('Dosya başarıyla yüklendi ve işlendi.');
+                },
+                error: function(xhr, status, error) {
+                    // POST isteği sırasında hata oluştuğunda yapılacak işlemler
+                    console.error('Dosya yükleme işlemi başarısız: ' + error);
+                }
+            });
+        };
+
+        reader.readAsText(file);
+    });
+
 
 });
