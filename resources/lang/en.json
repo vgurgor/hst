@@ -157,6 +157,7 @@
     "Aşağıdaki python projesini bilgisayarına kurup, indirdiğiniz json dosyasını input klasörüne ekleyip, optimizasyonu çalıştırın": "Install the following python project on your computer, add the json file you downloaded to the input folder and run the optimization",
     "HST Gurobi Optimizasyon Aracı": "HST Gurobi Optimization Tool",
     "Çizelge oluşturudu": "Timetable created",
+    "Çizelge Oluştur": "Create Timetable",
     "Görüntüle": "View",
     "Bitir": "Finish",
     "Çizelgeler": "Timetables",
